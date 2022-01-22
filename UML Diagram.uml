@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/jeremykrovitz/Dropbox/Boston/Spring 1 2022/CS622/Assignments - CS622/Assignment 1 - CS622/Term Project - Assignment 1</OriginalElement>
+  <nodes>
+    <node x="55.75" y="194.5">Account</node>
+    <node x="166.15277777777777" y="0.0">LibraryUser</node>
+    <node x="277.75" y="194.0">Book</node>
+    <node x="442.75" y="194.0">Staff</node>
+    <node x="253.98888888888888" y="324.0">Librarian</node>
+    <node x="179.60555555555555" y="496.0">Admin</node>
+    <node x="401.60555555555555" y="496.0">MainMenu</node>
+    <node x="0.0" y="324.0">Patron</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Librarian" target="Book" relationship="CREATE">
+      <point x="0.0" y="-60.0" />
+      <point x="354.9888888888889" y="297.0" />
+      <point x="350.25" y="297.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+    <edge source="Patron" target="LibraryUser" relationship="GENERALIZATION">
+      <point x="-50.5" y="-60.0" />
+      <point x="50.5" y="297.0" />
+      <point x="45.25" y="297.0" />
+      <point x="45.25" y="168.0" />
+      <point x="274.65277777777777" y="168.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="MainMenu" target="Staff" relationship="DEPENDENCY">
+      <point x="41.75" y="-38.0" />
+      <point x="526.8555555555556" y="470.0" />
+      <point x="509.65277777777777" y="470.0" />
+      <point x="509.65277777777777" y="297.0" />
+      <point x="535.75" y="297.0" />
+      <point x="31.0" y="38.0" />
+    </edge>
+    <edge source="Admin" target="Librarian" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.0" />
+      <point x="280.60555555555555" y="470.0" />
+      <point x="304.4888888888889" y="470.0" />
+      <point x="-50.5" y="60.0" />
+    </edge>
+    <edge source="Librarian" target="Account" relationship="REALIZATION">
+      <point x="-67.33333333333331" y="-60.0" />
+      <point x="287.65555555555557" y="297.0" />
+      <point x="156.75" y="297.0" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="Patron" target="Account" relationship="REALIZATION">
+      <point x="50.5" y="-60.0" />
+      <point x="151.5" y="297.0" />
+      <point x="156.75" y="297.0" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="Staff" target="LibraryUser" relationship="GENERALIZATION">
+      <point x="0.0" y="-38.0" />
+      <point x="504.75" y="168.0" />
+      <point x="274.65277777777777" y="168.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="Librarian" target="Staff" relationship="GENERALIZATION">
+      <point x="67.33333333333331" y="-60.0" />
+      <point x="422.3222222222222" y="297.0" />
+      <point x="473.75" y="297.0" />
+      <point x="-31.0" y="38.0" />
+    </edge>
+    <edge source="MainMenu" target="Librarian" relationship="CREATE">
+      <point x="-41.75" y="-38.0" />
+      <point x="443.35555555555555" y="470.0" />
+      <point x="405.4888888888889" y="470.0" />
+      <point x="50.5" y="60.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8665540540540541" showDependencies="true" x="284.5" y="286.0" />
+  <SelectedNodes>
+    <node>Staff</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
