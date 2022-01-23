@@ -17,6 +17,7 @@ public class BookModel {
     private String tenDigitISBN;
     private int copies;
     private int quantityAvailable;
+    private static final String BOOK_CSV_FILE = "./src/main/java/edu/bu/jkrovitz/console/model/csvs/booklist.csv";
 
     public String getTitle() {
         return title;
@@ -97,6 +98,31 @@ public class BookModel {
     public void setQuantityAvailable(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
     }
+
+    public String getBookFile(){
+        return BOOK_CSV_FILE;
+    }
+
+//    public void outputBooksToFile(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitIsbn, String tenDigitIsbn, int copies, int quantityAvailable) {
+//        Path root = Paths.get(".").normalize().toAbsolutePath();
+//        String bookFile = root + "/src/main/java/edu/bu/jkrovitz/console/model/csvs/booklist.csv";
+//        String[] columnHeaders = {"Book Title", "Book Author(s)", "Year Published", "Publisher", "Pages", "Brief Description", "13 Digit ISBN", "10 Digit ISBN", "Copies", "Available"};
+//        try {
+//            FileWriter csvWriter = new FileWriter(bookFile, true);
+//            File file = new File(bookFile);
+//
+//            if (file.length() == 0) {
+//
+//                for (String columnHeader : columnHeaders) {
+//                    csvWriter.append(columnHeader + ", ");
+//                }
+//            }
+//            csvWriter.append("\n" + title + ", " + author + ", " + year + ", " + publisher + ", " + pages + ", " + briefDescription + "," + thirteenDigitIsbn + ", " + tenDigitIsbn + ", " + copies + ", " + quantityAvailable);
+//            csvWriter.close();
+//        } catch (Exception e) {
+//            System.out.println("exception :" + e.getMessage());
+//        }
+//    }
 
     public void outputBooksToFile(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitIsbn, String tenDigitIsbn, int copies, int quantityAvailable) {
         Path root = Paths.get(".").normalize().toAbsolutePath();

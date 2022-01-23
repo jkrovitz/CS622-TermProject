@@ -39,13 +39,13 @@ public class MainMenu {
         sc.close();
     }
 
-    public void librarianMenu() {
+    public void librarianMenu() throws IOException {
         Scanner sc = new Scanner(System.in);
 
         int choice;
         do {
             choice = -1;
-            System.out.println("Do you want to 0. quit 1. Add a new book?");
+            System.out.println("Do you want to 0. quit 1. Add a new book? 2. search");
             if (sc.hasNextInt()) {
                 choice = sc.nextInt();
                 switch (choice) {
@@ -54,6 +54,10 @@ public class MainMenu {
                     case 1:
                         BookController bookController = new BookController();
                         bookController.processOutput();
+                        break;
+                    case 2:
+                        BookFinderController bookControllerFinder = new BookFinderController();
+                        bookControllerFinder.findBook();
                         break;
                     default:
                         System.out.println("You have chose an invalid option.");

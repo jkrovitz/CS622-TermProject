@@ -1,13 +1,21 @@
 package edu.bu.jkrovitz.console.controller;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import edu.bu.jkrovitz.console.model.BookModel;
-import edu.bu.jkrovitz.console.view.BookView;
+import edu.bu.jkrovitz.console.view.books.BookFinderView;
+import edu.bu.jkrovitz.console.view.books.BookView;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class BookController {
     BookView view = new BookView();
     BookModel model = new BookModel();
+    BookFinderView bookFinderView = new BookFinderView();
 
-    public void getBookInformation(){
+    public void setBookInformation() {
         model.setTitle(view.askTitle());
         model.setAuthor(view.askAuthor());
         model.setYear(view.askYearPublished());
@@ -20,13 +28,12 @@ public class BookController {
         model.setQuantityAvailable(view.askQuantityAvailable());
     }
 
-    public void outputBooksToFile(){
+    public void outputBooksToFile() {
         model.outputBooksToFile(model.getTitle(), model.getAuthor(), model.getYear(), model.getPublisher(), model.getPages(), model.getBriefDescription(), model.getThirteenDigitISBN(), model.getTenDigitISBN(), model.getCopies(), model.getQuantityAvailable());
     }
 
-    public void processOutput(){
-        getBookInformation();
+    public void processOutput() {
+        setBookInformation();
         outputBooksToFile();
     }
-
 }

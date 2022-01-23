@@ -1,4 +1,4 @@
-package edu.bu.jkrovitz.console.view;
+package edu.bu.jkrovitz.console.view.books;
 
 import java.util.Scanner;
 
