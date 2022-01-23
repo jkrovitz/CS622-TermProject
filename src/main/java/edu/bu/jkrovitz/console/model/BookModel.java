@@ -2,9 +2,13 @@ package edu.bu.jkrovitz.console.model;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+/**
+ * The class BookModel sets/gets the various attributes of a book and
+ * stores each book in a CSV file.
+ *
+ * @author Jeremy Krovitz
+ */
 public class BookModel {
 
     private String title;
@@ -103,34 +107,11 @@ public class BookModel {
         return BOOK_CSV_FILE;
     }
 
-//    public void outputBooksToFile(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitIsbn, String tenDigitIsbn, int copies, int quantityAvailable) {
-//        Path root = Paths.get(".").normalize().toAbsolutePath();
-//        String bookFile = root + "/src/main/java/edu/bu/jkrovitz/console/model/csvs/booklist.csv";
-//        String[] columnHeaders = {"Book Title", "Book Author(s)", "Year Published", "Publisher", "Pages", "Brief Description", "13 Digit ISBN", "10 Digit ISBN", "Copies", "Available"};
-//        try {
-//            FileWriter csvWriter = new FileWriter(bookFile, true);
-//            File file = new File(bookFile);
-//
-//            if (file.length() == 0) {
-//
-//                for (String columnHeader : columnHeaders) {
-//                    csvWriter.append(columnHeader + ", ");
-//                }
-//            }
-//            csvWriter.append("\n" + title + ", " + author + ", " + year + ", " + publisher + ", " + pages + ", " + briefDescription + "," + thirteenDigitIsbn + ", " + tenDigitIsbn + ", " + copies + ", " + quantityAvailable);
-//            csvWriter.close();
-//        } catch (Exception e) {
-//            System.out.println("exception :" + e.getMessage());
-//        }
-//    }
-
     public void outputBooksToFile(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitIsbn, String tenDigitIsbn, int copies, int quantityAvailable) {
-        Path root = Paths.get(".").normalize().toAbsolutePath();
-        String bookFile = root + "/src/main/java/edu/bu/jkrovitz/console/model/csvs/booklist.csv";
         String[] columnHeaders = {"Book Title", "Book Author(s)", "Year Published", "Publisher", "Pages", "Brief Description", "13 Digit ISBN", "10 Digit ISBN", "Copies", "Available"};
         try {
-            FileWriter csvWriter = new FileWriter(bookFile, true);
-            File file = new File(bookFile);
+            FileWriter csvWriter = new FileWriter(BOOK_CSV_FILE, true);
+            File file = new File(BOOK_CSV_FILE);
 
             if (file.length() == 0) {
 

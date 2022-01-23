@@ -1,13 +1,30 @@
 package edu.bu.jkrovitz.console.view.books;
 
+import java.awt.print.Book;
 import java.util.Scanner;
 
 public class BookView {
 
+    private String title;
+    private int yearPublished;
+    private String thirteenDigitISBN;
+    private String tenDigitISBN;
+
+
     public String askTitle(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What is the title of the book?");
-        return scanner.nextLine();
+        boolean matches = false;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("What is the title of the book?");
+            title = scanner.nextLine();
+            if (!(BookValidateView.validateBookTitle(title))) {
+                System.out.println("Please correct the title formatting.");
+            }
+            else{
+                matches = true;
+            }
+        } while (!matches);
+        return title;
     }
 
     public String askAuthor() {
@@ -17,9 +34,19 @@ public class BookView {
     }
 
     public int askYearPublished() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What year was the book published?");
-        return scanner.nextInt();
+        boolean matches = false;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("What year was the book published?");
+            yearPublished = scanner.nextInt();
+            if (!(BookValidateView.validateYear(yearPublished))) {
+                System.out.println("Please correct the year formatting.");
+            }
+            else{
+                matches = true;
+            }
+        } while (!matches);
+        return yearPublished;
     }
 
     public String askPublisher() {
@@ -41,15 +68,35 @@ public class BookView {
     }
 
     public String askThirteenDigitIsbn() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please provide the 13 digit isbn number for the book.");
-        return scanner.nextLine();
+        boolean matches = false;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please provide the 13 digit isbn number for the book.");
+            thirteenDigitISBN = scanner.nextLine();
+            if (!(BookValidateView.validateThirteenDigitISBNNumber(thirteenDigitISBN))) {
+               System.out.println("Please correct the ISBN formatting.");
+            }
+            else{
+                matches = true;
+            }
+        } while (!matches);
+        return thirteenDigitISBN;
     }
 
     public String askTenDigitIsbn() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please input the book's 10 digit isbn number.");
-        return scanner.nextLine();
+        boolean matches = false;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please input the book's 10 digit isbn number.");
+            tenDigitISBN = scanner.nextLine();
+            if (!(BookValidateView.validateTenDigitISBNNumber(tenDigitISBN))) {
+                System.out.println("Please correct the ISBN formatting.");
+            } else {
+                matches = true;
+            }
+        }
+        while (!matches);
+        return tenDigitISBN;
     }
 
     public int askCopies() {

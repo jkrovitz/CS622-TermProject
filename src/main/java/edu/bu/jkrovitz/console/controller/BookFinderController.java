@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The class BookFinderController handles finding a book in the system
+ * and outputting an appropriate message if it does not exist.
+ *
+ * @author Jeremy Krovitz
+ */
 public class BookFinderController {
     BookFinderView bookFinderView = new BookFinderView();
     BookModel bookModel = new BookModel();
