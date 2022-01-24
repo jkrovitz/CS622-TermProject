@@ -1,11 +1,12 @@
 package edu.bu.jkrovitz.console.view.roles;
 
 public class PatronView extends LibraryUserView {
-    String firstName;
-    String lastName;
-    String emailAddress;
-    String username;
-    String password;
+    private String firstName;
+    private String lastName;
+    private String emailAddress;
+    private String username;
+    private String password;
+    private String roleType;
 
     @Override
     public String askFirstName(){
@@ -35,5 +36,11 @@ public class PatronView extends LibraryUserView {
     public String askPassword(){
         password = super.askPassword();
         return password;
+    }
+
+    @Override
+    public String askRoleType(){
+        roleType = super.askRoleType();
+        return roleType;
     }
 }

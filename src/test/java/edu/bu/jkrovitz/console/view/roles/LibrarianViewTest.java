@@ -51,13 +51,13 @@ class LibrarianViewTest {
         System.setIn(in);
         assertEquals("1234", librarianView.askPassword());
     }
-
-    @org.junit.jupiter.api.Test
-    void askEmployeeId() {
-        LibrarianView librarianView = new LibrarianView();
-        String input = "1234";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        assertEquals("L1234", librarianView.askEmployeeId());
-    }
+//
+//    @org.junit.jupiter.api.Test
+//    void askEmployeeId() {
+//        LibrarianView librarianView = new LibrarianView();
+//        String input = "1234";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+////        assertEquals("L1234", librarianView.askEmployeeId());
+//    }
 }

@@ -6,14 +6,15 @@ import edu.bu.jkrovitz.console.controller.AccountController;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AdminController extends AccountController {
 
     @Override
-    public void login() throws IOException {
+    public void login() throws IOException, SQLException {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        BufferedReader br = new BufferedReader(new FileReader(root + "/src/edu/bu/jkrovitz/console/csvs/admin.csv"));
+        BufferedReader br = new BufferedReader(new FileReader(root + "/src/main/resources/edu.bu.jkrovitz/csvs/admin.csv"));
         br.readLine();
         String line;
         while ((line = br.readLine()) != null) {

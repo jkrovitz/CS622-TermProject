@@ -1,5 +1,7 @@
 package edu.bu.jkrovitz.console.model.roles;
 
+import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Path;
@@ -12,7 +14,16 @@ public class LibrarianModel extends LibraryUserModel{
     String emailAddress;
     String username;
     String password;
+    String saltValue;
     String employeeId;
+
+    public LibrarianModel(){};
+
+    public LibrarianModel(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
 
     @Override
     public String getFirstName() {
@@ -64,6 +75,10 @@ public class LibrarianModel extends LibraryUserModel{
         this.password = password;
     }
 
+    public void setEncryptedPassword(String password){
+        this.password = PasswordEncryption.encrypt(password);
+    }
+
     public String getEmployeeId() {
         return employeeId;
     }
@@ -75,7 +90,7 @@ public class LibrarianModel extends LibraryUserModel{
     @Override
     public void createRole(String firstName, String lastName, String emailAddress, String username, String password) {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        String librarianFile = root + "/src/edu/bu/jkrovitz/console/csvs/librarian.csv";
+        String librarianFile = root + "/src/main/resources/edu.bu.jkrovitz/csvs/librarian.csv";
         String[] columnHeaders = {"first name", "last name", "email address", "username", "password", "employee id"};
         try {
             FileWriter csvWriter = new FileWriter(librarianFile, true);

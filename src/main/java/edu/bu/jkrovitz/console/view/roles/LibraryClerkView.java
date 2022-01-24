@@ -3,12 +3,13 @@ package edu.bu.jkrovitz.console.view.roles;
 import java.util.Scanner;
 
 public class LibraryClerkView extends LibraryUserView {
-    String firstName;
-    String lastName;
-    String emailAddress;
-    String username;
-    String password;
-    String employeeId;
+    private String firstName;
+    private String lastName;
+    private String emailAddress;
+    private String username;
+    private String password;
+    private String employeeId;
+    private String roleType;
 
     @Override
     public String askFirstName(){
@@ -40,11 +41,17 @@ public class LibraryClerkView extends LibraryUserView {
         return password;
     }
 
-    public String askEmployeeId(){
-        Scanner personInput = new Scanner(System.in);
-        System.out.println("Please enter an id for the librarian");
-        int libraryClerkIntId = personInput.nextInt();
-        employeeId = "LC" + libraryClerkIntId;
-        return employeeId;
+    @Override
+    public String askRoleType(){
+        roleType = super.askRoleType();
+        return roleType;
     }
+
+//    public String askEmployeeId(){
+//        Scanner personInput = new Scanner(System.in);
+//        System.out.println("Please enter an id for the librarian");
+//        int libraryClerkIntId = personInput.nextInt();
+//        employeeId = "LC" + libraryClerkIntId;
+//        return employeeId;
+//    }
 }

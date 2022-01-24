@@ -21,7 +21,7 @@ public class BookModel {
     private String tenDigitISBN;
     private int copies;
     private int quantityAvailable;
-    private static final String BOOK_CSV_FILE = "./src/main/java/edu/bu/jkrovitz/console/model/csvs/booklist.csv";
+    private static final String BOOK_CSV_FILE = "./src/main/resources/edu.bu.jkrovitz/csvs/booklist.csv";
 
     public String getTitle() {
         return title;

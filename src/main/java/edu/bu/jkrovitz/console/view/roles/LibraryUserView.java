@@ -1,5 +1,7 @@
 package edu.bu.jkrovitz.console.view.roles;
 
+import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
+
 import java.util.Scanner;
 
 abstract public class LibraryUserView {
@@ -31,6 +33,12 @@ abstract public class LibraryUserView {
     public String askPassword(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a password");
+        return scanner.nextLine();
+    }
+
+    public String askRoleType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the role type.");
         return scanner.nextLine();
     }
 }

@@ -1,14 +1,8 @@
 package edu.bu.jkrovitz.console.controller;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
 import edu.bu.jkrovitz.console.model.BookModel;
 import edu.bu.jkrovitz.console.view.books.BookFinderView;
 import edu.bu.jkrovitz.console.view.books.BookView;
-
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class BookController {
     BookView view = new BookView();
