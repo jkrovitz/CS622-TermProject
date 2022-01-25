@@ -1,5 +1,12 @@
 package edu.bu.jkrovitz.console.view.roles;
 
+import edu.bu.jkrovitz.console.controller.LoginController;
+import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
+import edu.bu.jkrovitz.console.controller.roles.LibraryClerkController;
+import edu.bu.jkrovitz.console.enums.Role;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LibraryClerkView extends LibraryUserView {
@@ -10,6 +17,7 @@ public class LibraryClerkView extends LibraryUserView {
     private String password;
     private String employeeId;
     private String roleType;
+    private LibraryClerkController libraryClerkController;
 
     @Override
     public String askFirstName(){
@@ -47,11 +55,47 @@ public class LibraryClerkView extends LibraryUserView {
         return roleType;
     }
 
-//    public String askEmployeeId(){
-//        Scanner personInput = new Scanner(System.in);
-//        System.out.println("Please enter an id for the librarian");
-//        int libraryClerkIntId = personInput.nextInt();
-//        employeeId = "LC" + libraryClerkIntId;
-//        return employeeId;
-//    }
+    public void askToRegisterOrLogin(){
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            choice = -1;
+
+            while (true) {
+                System.out.println("Do you want to 0. quit 1. Go back 2. Login 3. Register");
+                if (sc.hasNextInt()) {
+                    break;
+                }
+                String input = String.valueOf(sc.next());
+                System.out.println("Your input " + input + " is not an integer. Your input must be an integer. Please try again.\n");
+            }
+
+            choice = sc.nextInt();
+            switch (choice) {
+                case 0:
+                    System.exit(0);
+                case 1:
+                    break;
+                case 2:
+                    LoginController loginController = new LoginController();
+                    try {
+                        loginController.processLogin(Role.LIBRARY_CLERK.toString());
+                    } catch (SQLException | IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 3:
+                    libraryClerkController = new LibraryClerkController();
+                    try {
+                        libraryClerkController.registerUser();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                default:
+                    System.out.println("You have chose an invalid option.");
+            }
+
+        } while (choice != 1);
+    }
 }

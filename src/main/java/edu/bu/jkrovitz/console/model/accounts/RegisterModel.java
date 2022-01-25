@@ -5,7 +5,6 @@ import edu.bu.jkrovitz.console.model.Database;
 import java.sql.*;
 
 public class RegisterModel {
-
     public void register(String username, String password, String roleType, String emailAddress, String firstName, String lastName) throws SQLException {
         Connection conn = Database.connectToDatabase();
         String sql = "INSERT INTO user_info(" +
@@ -21,8 +20,16 @@ public class RegisterModel {
             pstmt.setString(5, lastName);
             pstmt.setString(6, emailAddress);
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-           System.out.println(e.getMessage());
+        } catch (SQLException sqlException) {
+            String partOfException = sqlException.toString();
+            if ((sqlException.getErrorCode() == 19) && (partOfException.contains("SQLITE_CONSTRAINT_UNIQUE"))){
+                if (partOfException.contains("user_info.username")) {
+                    System.out.println("The username \"" + username + "\" already exists in the system. Please try to re-register.");
+                }
+                else if (partOfException.contains("user_info.email_address")) {
+                    System.out.println("The email address \"" + emailAddress + "\" already exists in the system. Please try to re-register.");
+                }
+            }
         }
     }
 }

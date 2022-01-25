@@ -18,12 +18,12 @@ public class LoginController {
       String keepGoing = "";
        do {
            String username = loginModel.setUsername(loginView.enterUsername());
-           String password = loginModel.setPassword(loginView.enterPassword());
+           String password = loginModel.setEncryptedPassword(loginModel.setPassword(loginView.enterPassword()));
            Scanner sc = new Scanner(System.in);
-           boolean result = loginModel.retrieveFromDatabase(role, username, PasswordEncryption.encrypt(password));
+           boolean result = loginModel.retrieveFromDatabase(role, username, password);
            if (result) {
                MainMenu mainMenu = new MainMenu();
-               mainMenu.librarianMenu();
+               mainMenu.openSpecificRoleMenu(role);
                break;
            }
                System.out.print("Username and/or password are invalid. Press <Enter> to try again, \"b\" to go back, or \"q\" to quit.\n");

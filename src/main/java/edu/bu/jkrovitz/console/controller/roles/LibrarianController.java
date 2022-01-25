@@ -1,12 +1,11 @@
 package edu.bu.jkrovitz.console.controller.roles;
 
-import edu.bu.jkrovitz.console.controller.BookController;
+import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.accounts.RegisterModel;
 import edu.bu.jkrovitz.console.model.roles.LibrarianModel;
 import edu.bu.jkrovitz.console.view.roles.LibrarianView;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class LibrarianController extends LibraryUserController {
 
@@ -17,13 +16,10 @@ public class LibrarianController extends LibraryUserController {
     @Override
     public void getInformation(){
         librarianModel.setUsername(librarianView.askUsername());
-        librarianModel.setPassword(librarianView.askPassword());
+        librarianModel.setEncryptedPassword(librarianModel.setPassword(librarianView.askPassword()));
         librarianModel.setEmailAddress(librarianView.askEmailAddress());
         librarianModel.setFirstName(librarianView.askFirstName());
         librarianModel.setLastName(librarianView.askLastName());
-//        librarianModel.setEmailAddress(librarianView.askEmailAddress());
-//        librarianModel.setUsername(librarianView.askPassword());
-//        librarianModel.setEmployeeId(librarianView.askEmployeeId());
     }
 
     @Override
@@ -32,18 +28,12 @@ public class LibrarianController extends LibraryUserController {
     }
 
     public void registerModel() throws SQLException {
-        registerModel.register(librarianModel.getUsername(), librarianModel.getEncryptedString(), "librarian", librarianModel.getEmailAddress(), librarianModel.getFirstName(), librarianModel.getLastName());
+        registerModel.register(librarianModel.getUsername(), librarianModel.getEncryptedPassword(), Role.LIBRARIAN.toString(), librarianModel.getEmailAddress(), librarianModel.getFirstName(), librarianModel.getLastName());
     }
 
     @Override
-    public void processOutput() throws SQLException {
+    public void registerUser() throws SQLException {
         getInformation();
-//        createRole();
         registerModel();
     }
-
-    public void registerOrLogin() {
-        librarianView.askToRegisterOrLogin();
-    }
-
 }

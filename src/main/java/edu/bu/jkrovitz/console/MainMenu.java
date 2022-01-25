@@ -5,7 +5,9 @@ import edu.bu.jkrovitz.console.controller.roles.*;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
 import edu.bu.jkrovitz.console.model.accounts.LoginTableModel;
-import edu.bu.jkrovitz.console.model.roles.LibrarianModel;
+import edu.bu.jkrovitz.console.view.roles.LibrarianView;
+import edu.bu.jkrovitz.console.view.roles.LibraryClerkView;
+import edu.bu.jkrovitz.console.view.roles.PatronView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -48,16 +50,16 @@ public class MainMenu {
                     admin.login();
                     break;
                 case 2:
-//                    LoginController loginController = new LoginController();
-//                    loginController.processLogin(Role.LIBRARIAN.toString());
-                    LibrarianController librarianController = new LibrarianController();
-                    librarianController.registerOrLogin();
+                    LibrarianView librarianView = new LibrarianView();
+                    librarianView.askToRegisterOrLogin();
                     break;
                 case 3:
-                    mainMenu.libraryClerkMenu();
+                    LibraryClerkView libraryClerkView = new LibraryClerkView();
+                    libraryClerkView.askToRegisterOrLogin();
                     break;
                 case 4:
-                    mainMenu.patronMenu();
+                    PatronView patronView = new PatronView();
+                    patronView.askToRegisterOrLogin();
                     break;
                 case 5:
                     LoginTableModel loginTableModel = new LoginTableModel();
@@ -75,6 +77,25 @@ public class MainMenu {
             }
         } while (choice != 0);
         sc.close();
+    }
+
+    public void openSpecificRoleMenu(String role) throws SQLException {
+        if (role.equals(Role.PATRON.toString())) {
+            patronMenu();
+        }
+        if (role.equals(Role.LIBRARY_CLERK.toString())) {
+            libraryClerkMenu();
+        }
+        if (role.equals(Role.LIBRARIAN.toString())) {
+            try {
+                librarianMenu();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (role.equals(Role.ADMIN.toString())) {
+            adminMenu();
+        }
     }
 
     public void patronMenu() {
@@ -97,8 +118,6 @@ public class MainMenu {
                 case 1:
                     BookFinderController bookControllerFinder = new BookFinderController();
                     bookControllerFinder.findBook();
-                    break;
-                case 2:
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");
@@ -213,7 +232,7 @@ public class MainMenu {
                         break;
                     case 3:
                         LibraryUserController librarian = new LibrarianController();
-                        librarian.processOutput();
+                        librarian.registerUser();
                         break;
                     default:
                         System.out.println("You have chose an invalid option.");

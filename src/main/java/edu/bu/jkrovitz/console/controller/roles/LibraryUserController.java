@@ -8,6 +8,6 @@ public abstract class LibraryUserController {
 
     public abstract void createRole();
 
-    public abstract void processOutput() throws SQLException;
+    public abstract void registerUser() throws SQLException;
 
 }

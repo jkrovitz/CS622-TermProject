@@ -2,11 +2,6 @@ package edu.bu.jkrovitz.console.model.roles;
 
 import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 abstract public class LibraryUserModel {
 
     private String firstName;
@@ -51,16 +46,21 @@ abstract public class LibraryUserModel {
         return password;
     }
 
-    public void setPassword(String password) {
+    public String setPassword(String password) {
+        this.password = password;
+        return password;
+    }
+
+    public void setEncryptedPassword(String password){
+        password = PasswordEncryption.encrypt(this.password);
         this.password = password;
     }
 
-
-    public String getEncryptedString(){
-        return PasswordEncryption.encrypt(password);
+    public String getEncryptedPassword(){
+        return this.password;
     }
 
-    public String getDecryptedString(){
+    public String getDecryptedPassword(){
         return password;
     }
 

@@ -28,8 +28,17 @@ public class LoginModelReading {
         return this.password;
     }
 
+    public String getEncryptedPassword(){
+        return this.password;
+    }
+
+    public String setEncryptedPassword(String password){
+        password = PasswordEncryption.encrypt(this.password);
+        this.password = password;
+        return password;
+    }
+
     public boolean retrieveFromDatabase(String role, String username, String password) throws SQLException {
-       LibrarianModel librarian = null;
        boolean result = false;
        String query = "SELECT * FROM user_info WHERE username = ? AND password = ? AND user_type = ?";
        PreparedStatement stmt = Database.connectToDatabase().prepareStatement(query);

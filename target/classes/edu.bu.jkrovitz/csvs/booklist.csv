@@ -10,3 +10,5 @@ test book, test , 2006, Puffin Books, 224, test,978-0142405734, 0142405736, 1, 1
 test, test, 2001, test, 235, test,ISBN-13: 978-1-4028-9462-6, 0142405734, 1, 1
 test, test, 2001, test, 234, test,9780596520687, 0596520687, 1, 1
 test book, ttest, 2004, test, 234, test,978-1234567890, 1234567890, 1, 1
+Test New Book, test test;, 2001, Test Publisher, 123, test,978-2345345678, 123456789, 1, 1
+testing, test, 2001, test, 123, test,978-1234567890, 123456789, 1, 1

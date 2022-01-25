@@ -24,7 +24,6 @@ public class LibrarianModel extends LibraryUserModel{
         this.password = password;
     }
 
-
     @Override
     public String getFirstName() {
         return firstName;
@@ -71,12 +70,18 @@ public class LibrarianModel extends LibraryUserModel{
     }
 
     @Override
-    public void setPassword(String password) {
+    public String setPassword(String password) {
         this.password = password;
+        return password;
+    }
+
+    public String getEncryptedPassword(){
+        return this.password;
     }
 
     public void setEncryptedPassword(String password){
-        this.password = PasswordEncryption.encrypt(password);
+        password = PasswordEncryption.encrypt(this.password);
+        this.password = password;
     }
 
     public String getEmployeeId() {

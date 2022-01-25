@@ -19,11 +19,8 @@ public class LibrarianView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
-    private String employeeId;
     private String roleType;
-//    private LibrarianController librarianController;
-    private RegisterModel registerModel = new RegisterModel();
-    private LibrarianModel librarianModel = new LibrarianModel();
+    private LibrarianController librarianController;
 
     @Override
     public String askFirstName(){
@@ -55,28 +52,11 @@ public class LibrarianView extends LibraryUserView {
         return password;
     }
 
-//    public String askEmployeeId(){
-//        Scanner personInput = new Scanner(System.in);
-//        System.out.println("Please enter an id for the librarian");
-//        int librarianIntId = personInput.nextInt();
-//        employeeId = "L" + librarianIntId;
-//        return employeeId;
-//    }
-
     @Override
     public String askRoleType(){
         roleType = super.askRoleType();
         return roleType;
     }
-
-//    public void registerOrLogin(){
-//        try {
-//            librarianView = new LibrarianView();
-//            librarianView.registerModel();
-//        } catch(SQLException sqlException) {
-//            System.out.println(sqlException.getMessage());
-//        }
-//    }
 
     public void askToRegisterOrLogin(){
         Scanner sc = new Scanner(System.in);
@@ -108,9 +88,9 @@ public class LibrarianView extends LibraryUserView {
                         }
                         break;
                     case 3:
-//                        LibraryUserModel librarianModel = new LibrarianModel();
+                       librarianController = new LibrarianController();
                         try {
-                            registerModel.register(librarianModel.getUsername(), librarianModel.getEncryptedString(), "librarian", librarianModel.getEmailAddress(), librarianModel.getFirstName(), librarianModel.getLastName());
+                            librarianController.registerUser();
                         } catch (SQLException e) {
                             System.out.println(e.getMessage());
                         }

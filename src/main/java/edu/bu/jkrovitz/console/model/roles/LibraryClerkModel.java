@@ -1,5 +1,7 @@
 package edu.bu.jkrovitz.console.model.roles;
 
+import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
+
 public class LibraryClerkModel extends LibraryUserModel{
 
     String firstName;
@@ -55,7 +57,17 @@ public class LibraryClerkModel extends LibraryUserModel{
     }
 
     @Override
-    public void setPassword(String password) {
+    public String setPassword(String password) {
+        this.password = password;
+        return password;
+    }
+
+    public String getEncryptedPassword(){
+        return this.password;
+    }
+
+    public void setEncryptedPassword(String password){
+        password = PasswordEncryption.encrypt(this.password);
         this.password = password;
     }
 
