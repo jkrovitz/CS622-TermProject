@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class LoginTableModel {
 
-    public void addLoginTable() throws SQLException {
+    public void addLoginTable() {
 
         Connection conn = Database.connectToDatabase();
         Statement stmt = null;

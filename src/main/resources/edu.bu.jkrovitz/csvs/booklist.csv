@@ -12,3 +12,4 @@ test, test, 2001, test, 234, test,9780596520687, 0596520687, 1, 1
 test book, ttest, 2004, test, 234, test,978-1234567890, 1234567890, 1, 1
 Test New Book, test test;, 2001, Test Publisher, 123, test,978-2345345678, 123456789, 1, 1
 testing, test, 2001, test, 123, test,978-1234567890, 123456789, 1, 1
+test book, test author, 2001, test, 123, test,ISBN 978-0-596-52068-7, 0-596-52068-9, 1, 1

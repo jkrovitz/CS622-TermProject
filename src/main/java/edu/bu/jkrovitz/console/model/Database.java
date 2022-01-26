@@ -6,11 +6,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Sets up database connection and uses a master function to call other
+ * function to create the database table.
+ */
 public class Database {
 
     private final static String DATABASE_URL = "jdbc:sqlite:./src/main/resources/edu.bu.jkrovitz.database/lms.sqlite";
 
-    public static Connection connectToDatabase() throws SQLException {
+    public static Connection connectToDatabase() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(DATABASE_URL);
@@ -20,7 +24,7 @@ public class Database {
         return conn;
     }
 
-    public static void createTables() throws SQLException {
+    public static void createTables() {
         LoginTableModel loginTableModel = new LoginTableModel();
         loginTableModel.addLoginTable();
     }

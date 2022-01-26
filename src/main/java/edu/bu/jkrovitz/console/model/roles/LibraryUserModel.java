@@ -60,9 +60,5 @@ abstract public class LibraryUserModel {
         return this.password;
     }
 
-    public String getDecryptedPassword(){
-        return password;
-    }
-
     public abstract void createRole(String firstName, String lastName, String emailAddress, String username, String password);
 }

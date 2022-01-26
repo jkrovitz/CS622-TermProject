@@ -1,9 +1,11 @@
 package edu.bu.jkrovitz.console.model.roles;
 
+import edu.bu.jkrovitz.console.exceptions.IncorrectFilePathException;
 import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -97,8 +99,7 @@ public class LibrarianModel extends LibraryUserModel{
         Path root = Paths.get(".").normalize().toAbsolutePath();
         String librarianFile = root + "/src/main/resources/edu.bu.jkrovitz/csvs/librarian.csv";
         String[] columnHeaders = {"first name", "last name", "email address", "username", "password", "employee id"};
-        try {
-            FileWriter csvWriter = new FileWriter(librarianFile, true);
+        try (FileWriter csvWriter = new FileWriter(librarianFile, true)) {
             File file = new File(librarianFile);
 
             if (file.length() == 0) {
@@ -107,11 +108,10 @@ public class LibrarianModel extends LibraryUserModel{
                     csvWriter.append(columnHeader + ", ");
                 }
             }
-            csvWriter.append("\n" + firstName + ", " + lastName + ", " + emailAddress + ", " + username + ", " + password +  ", " + employeeId + ", ");
+            csvWriter.append("\n" + firstName + ", " + lastName + ", " + emailAddress + ", " + username + ", " + password + ", " + employeeId + ", ");
 
-            csvWriter.close();
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

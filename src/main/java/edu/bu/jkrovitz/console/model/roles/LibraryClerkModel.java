@@ -71,14 +71,6 @@ public class LibraryClerkModel extends LibraryUserModel{
         this.password = password;
     }
 
-    public String getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
-
     @Override
     public void createRole(String firstName, String lastName, String emailAddress, String username, String password) {
     }

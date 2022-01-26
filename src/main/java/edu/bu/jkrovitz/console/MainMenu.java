@@ -63,11 +63,7 @@ public class MainMenu {
                     break;
                 case 5:
                     LoginTableModel loginTableModel = new LoginTableModel();
-                    try {
-                        loginTableModel.addLoginTable();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    loginTableModel.addLoginTable();
                     break;
                 case 0:
                     System.exit(0);

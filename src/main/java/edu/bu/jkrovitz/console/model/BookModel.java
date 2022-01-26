@@ -2,6 +2,7 @@ package edu.bu.jkrovitz.console.model;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * The class BookModel sets/gets the various attributes of a book and
@@ -103,26 +104,23 @@ public class BookModel {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public String getBookFile(){
+    public String getBookFile() {
         return BOOK_CSV_FILE;
     }
 
     public void outputBooksToFile(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitIsbn, String tenDigitIsbn, int copies, int quantityAvailable) {
         String[] columnHeaders = {"Book Title", "Book Author(s)", "Year Published", "Publisher", "Pages", "Brief Description", "13 Digit ISBN", "10 Digit ISBN", "Copies", "Available"};
-        try {
-            FileWriter csvWriter = new FileWriter(BOOK_CSV_FILE, true);
+        try (FileWriter fileWriter = new FileWriter(BOOK_CSV_FILE, true)) {
+
             File file = new File(BOOK_CSV_FILE);
-
             if (file.length() == 0) {
-
                 for (String columnHeader : columnHeaders) {
-                    csvWriter.append(columnHeader + ", ");
+                    fileWriter.append(columnHeader + ", ");
                 }
             }
-            csvWriter.append("\n" + title + ", " + author + ", " + year + ", " + publisher + ", " + pages + ", " + briefDescription + "," + thirteenDigitIsbn + ", " + tenDigitIsbn + ", " + copies + ", " + quantityAvailable);
-            csvWriter.close();
-        } catch (Exception e) {
-            System.out.println("exception :" + e.getMessage());
+            fileWriter.append("\n" + title + ", " + author + ", " + year + ", " + publisher + ", " + pages + ", " + briefDescription + "," + thirteenDigitIsbn + ", " + tenDigitIsbn + ", " + copies + ", " + quantityAvailable);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
