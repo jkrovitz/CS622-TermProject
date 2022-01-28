@@ -1,10 +1,16 @@
 package edu.bu.jkrovitz.console.model.accounts;
 
 import edu.bu.jkrovitz.console.model.Database;
-import edu.bu.jkrovitz.console.model.roles.LibrarianModel;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+/**
+ * Retrieves user information from the database.
+ *
+ * @author Jeremy Krovitz
+ */
 public class LoginModelReading {
 
     private String username;
@@ -28,27 +34,23 @@ public class LoginModelReading {
         return this.password;
     }
 
-    public String getEncryptedPassword(){
+    public String setEncryptedPassword(String password) {
+        password = PasswordEncryption.encrypt(this.password);
+        this.password = password;
         return this.password;
     }
 
-    public String setEncryptedPassword(String password){
-        password = PasswordEncryption.encrypt(this.password);
-        this.password = password;
-        return password;
-    }
-
     public boolean retrieveFromDatabase(String role, String username, String password) throws SQLException {
-       boolean result = false;
-       String query = "SELECT * FROM user_info WHERE username = ? AND password = ? AND user_type = ?";
-       PreparedStatement stmt = Database.connectToDatabase().prepareStatement(query);
-       stmt.setString(1, username);
-       stmt.setString(2, password);
-       stmt.setString(3, role);
-       ResultSet res = stmt.executeQuery();
-       if (res.next()){
-           result = true;
-       }
-       return result;
+        boolean result = false;
+        String query = "SELECT * FROM user_info WHERE username = ? AND password = ? AND user_type = ?";
+        PreparedStatement stmt = Database.connectToDatabase().prepareStatement(query);
+        stmt.setString(1, username);
+        stmt.setString(2, password);
+        stmt.setString(3, role);
+        ResultSet res = stmt.executeQuery();
+        if (res.next()) {
+            result = true;
+        }
+        return result;
     }
 }

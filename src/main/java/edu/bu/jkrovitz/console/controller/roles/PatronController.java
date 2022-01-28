@@ -2,29 +2,30 @@ package edu.bu.jkrovitz.console.controller.roles;
 
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.accounts.RegisterModel;
-import edu.bu.jkrovitz.console.model.roles.PatronModel;
-import edu.bu.jkrovitz.console.view.roles.PatronView;
+import edu.bu.jkrovitz.console.model.roles.Patron;
+import edu.bu.jkrovitz.console.view.roles.patron.PatronProfileInformationView;
 
 import java.sql.SQLException;
 
+/**
+ * Handles the interaction between getting the patron profile information from the view, setting the patron profile information,
+ * and saving to a database.
+ *
+ * @author Jeremy Krovitz
+ */
 public class PatronController extends LibraryUserController{
 
-    PatronView patronView = new PatronView();
-    PatronModel patronModel = new PatronModel();
+    PatronProfileInformationView patronProfileInformationView = new PatronProfileInformationView();
+    Patron patronModel = new Patron();
     RegisterModel registerModel = new RegisterModel();
 
     @Override
     public void getInformation(){
-        patronModel.setUsername(patronView.askUsername());
-        patronModel.setEncryptedPassword(patronModel.setPassword(patronView.askPassword()));
-        patronModel.setEmailAddress(patronView.askEmailAddress());
-        patronModel.setFirstName(patronView.askFirstName());
-        patronModel.setLastName(patronView.askLastName());
-    }
-
-    @Override
-    public void createRole(){
-        patronModel.createRole(patronModel.getFirstName(), patronModel.getLastName(), patronModel.getEmailAddress(), patronModel.getUsername(), patronModel.getPassword());
+        patronModel.setUsername(patronProfileInformationView.askUsername());
+        patronModel.setEncryptedPassword(patronModel.setPassword(patronProfileInformationView.askPassword()));
+        patronModel.setEmailAddress(patronProfileInformationView.askEmailAddress());
+        patronModel.setFirstName(patronProfileInformationView.askFirstName());
+        patronModel.setLastName(patronProfileInformationView.askLastName());
     }
 
     public void registerModel() throws SQLException {

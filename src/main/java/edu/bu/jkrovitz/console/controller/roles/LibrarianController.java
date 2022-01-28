@@ -2,33 +2,34 @@ package edu.bu.jkrovitz.console.controller.roles;
 
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.accounts.RegisterModel;
-import edu.bu.jkrovitz.console.model.roles.LibrarianModel;
-import edu.bu.jkrovitz.console.view.roles.LibrarianView;
+import edu.bu.jkrovitz.console.model.roles.Librarian;
+import edu.bu.jkrovitz.console.view.roles.librarian.LibrarianProfileInformationView;
 
 import java.sql.SQLException;
 
+/**
+ * Handles the interaction between getting the librarian profile information from the view, setting the librarian profile information,
+ * and saving to a database.
+ *
+ * @author Jeremy Krovitz
+ */
 public class LibrarianController extends LibraryUserController {
 
-    LibrarianView librarianView = new LibrarianView();
-    LibrarianModel librarianModel = new LibrarianModel();
+    LibrarianProfileInformationView librarianProfileInformationView = new LibrarianProfileInformationView();
+    Librarian librarian = new Librarian();
     RegisterModel registerModel = new RegisterModel();
 
     @Override
     public void getInformation(){
-        librarianModel.setUsername(librarianView.askUsername());
-        librarianModel.setEncryptedPassword(librarianModel.setPassword(librarianView.askPassword()));
-        librarianModel.setEmailAddress(librarianView.askEmailAddress());
-        librarianModel.setFirstName(librarianView.askFirstName());
-        librarianModel.setLastName(librarianView.askLastName());
-    }
-
-    @Override
-    public void createRole(){
-        librarianModel.createRole(librarianModel.getFirstName(), librarianModel.getLastName(), librarianModel.getEmailAddress(), librarianModel.getUsername(), librarianModel.getPassword());
+        librarian.setUsername(librarianProfileInformationView.askUsername());
+        librarian.setEncryptedPassword(librarian.setPassword(librarianProfileInformationView.askPassword()));
+        librarian.setEmailAddress(librarianProfileInformationView.askEmailAddress());
+        librarian.setFirstName(librarianProfileInformationView.askFirstName());
+        librarian.setLastName(librarianProfileInformationView.askLastName());
     }
 
     public void registerModel() throws SQLException {
-        registerModel.register(librarianModel.getUsername(), librarianModel.getEncryptedPassword(), Role.LIBRARIAN.toString(), librarianModel.getEmailAddress(), librarianModel.getFirstName(), librarianModel.getLastName());
+        registerModel.register(librarian.getUsername(), librarian.getEncryptedPassword(), Role.LIBRARIAN.toString(), librarian.getEmailAddress(), librarian.getFirstName(), librarian.getLastName());
     }
 
     @Override

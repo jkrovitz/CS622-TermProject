@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Red Kayak",
+    "author": "Priscilla Cummings",
+    "year": 2006,
+    "publisher": "Puffin Books",
+    "pages": 224,
+    "briefDescription": "Brady loves life on the Chesapeake Bay with his friends J.T. and Digger",
+    "thirteenDigitISBN": "ISBN 978-0-596-52068-7",
+    "tenDigitISBN": "0-596-52068-9",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "A Tree Grows in Brooklyn",
+    "author": "Betty Smith",
+    "year": 2018,
+    "publisher": "Harper Perennial Modern Classics",
+    "pages": 493,
+    "briefDescription": "The American classic about a young girl\u0027s coming-of-age at the turn of the century.",
+    "thirteenDigitISBN": "ISBN-13: 978-0-060-73626-2",
+    "tenDigitISBN": "ISBN-10: 0-060-73626-2",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "Fun Home",
+    "author": "Alison Bechdel",
+    "year": 2007,
+    "publisher": "Mariner Books",
+    "pages": 232,
+    "briefDescription": "Distant and exacting, Bruce Bechdel was an English teacher and director of the town funeral home, which Alison and her family referred to as the \"Fun Home.\" It was not until college that Alison, who had recently come out as a lesbian, discovered that her father was also gay. A few weeks after this revelation, he was dead, leaving a legacy of mystery for his daughter to resolve.",
+    "thirteenDigitISBN": "ISBN-13: 978-0-544-70904-7",
+    "tenDigitISBN": "ISBN-10: 0-544-70904-7",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "George",
+    "author": "George",
+    "year": 2017,
+    "publisher": "Scholastic Inc",
+    "pages": 224,
+    "briefDescription": "When people look at Melissa, they think they see a boy named George. But she knows she\u0027s not a boy. She knows she\u0027s a girl.Melissa thinks she’ll have to keep this a secret forever. Then her teacher announces that their class play is going to be Charlotte\u0027s Web. Melissa really, really, REALLY wants to play Charlotte. But the teacher says she can\u0027t even try out for the part... because she\u0027s a boy.With the help of her best friend, Kelly, Melissa comes up with a plan. Not just so she can be Charlotte -- but so everyone can know who she is, once and for all.",
+    "thirteenDigitISBN": "ISBN-13: 978-0-545-81257-7",
+    "tenDigitISBN": "ISBN-10: 0-545-81257-7",
+    "copies": 1,
+    "quantityAvailable": 1
+  }
+]

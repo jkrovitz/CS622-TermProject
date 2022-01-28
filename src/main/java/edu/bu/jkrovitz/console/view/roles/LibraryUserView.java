@@ -1,10 +1,11 @@
 package edu.bu.jkrovitz.console.view.roles;
 
-import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
-
 import java.util.Scanner;
 
-abstract public class LibraryUserView {
+/**
+ * Abstract class sets up a variety of questions for a library user's profile information.
+ */
+public abstract class LibraryUserView {
 
     public String askFirstName() {
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +31,7 @@ abstract public class LibraryUserView {
         return scanner.nextLine();
     }
 
-    public String askPassword(){
+    public String askPassword() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a password");
         return scanner.nextLine();

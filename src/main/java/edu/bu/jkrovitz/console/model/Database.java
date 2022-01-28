@@ -9,6 +9,8 @@ import java.sql.SQLException;
 /**
  * Sets up database connection and uses a master function to call other
  * function to create the database table.
+ *
+ * @author Jeremy Krovitz
  */
 public class Database {
 
