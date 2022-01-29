@@ -1,6 +1,7 @@
 package edu.bu.jkrovitz.console.view.roles.libraryclerk;
 
 import edu.bu.jkrovitz.console.controller.LoginController;
+import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
 import edu.bu.jkrovitz.console.controller.roles.LibraryClerkController;
 import edu.bu.jkrovitz.console.enums.Role;
 import org.json.simple.parser.ParseException;
@@ -18,7 +19,7 @@ public class LibraryClerkLoginRegistrationView {
 
     private LibraryClerkController libraryClerkController = new LibraryClerkController();
 
-    public void askToRegisterOrLogin() {
+    public void askToRegisterOrLogin() throws SQLException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
@@ -41,21 +42,11 @@ public class LibraryClerkLoginRegistrationView {
                     break;
                 case 2:
                     LoginController loginController = new LoginController();
-                    try {
-                        loginController.processLogin(Role.LIBRARY_CLERK.toString());
-                    } catch (SQLException | IOException e) {
-                        System.out.println(e.getMessage());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    loginController.processLogin(Role.LIBRARY_CLERK.toString());
                     break;
                 case 3:
                     libraryClerkController = new LibraryClerkController();
-                    try {
-                        libraryClerkController.registerUser();
-                    } catch (SQLException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    libraryClerkController.registerUser();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

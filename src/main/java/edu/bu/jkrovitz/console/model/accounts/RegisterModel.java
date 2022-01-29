@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class RegisterModel {
     public void register(String username, String password, String roleType, String emailAddress, String firstName, String lastName) throws SQLException {
         Connection conn = Database.connectToDatabase();
-        String sql = "INSERT INTO user_info(" + "username,password,user_type,first_name," + "last_name, email_address) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO user_info(username,password,user_type,first_name,last_name, email_address) VALUES(?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement((sql))) {
 
@@ -35,5 +35,6 @@ public class RegisterModel {
                 }
             }
         }
+        conn.close();
     }
 }

@@ -17,8 +17,13 @@ public class BookView {
     private String title;
     private String author;
     private int yearPublished;
+    private String publisher;
+    private int pages;
+    private String briefDescription;
     private String thirteenDigitISBN;
     private String tenDigitISBN;
+    private int copies;
+    private int quantityAvailable;
 
     public String askTitle() {
         boolean matches = false;
@@ -34,9 +39,9 @@ public class BookView {
                     matches = true;
                 }
 
-            } catch (BookException bookException) {
+            } catch (BookException titleException) {
 
-                logger.info(bookException.getMessage());
+                logger.info(titleException.getMessage());
             }
         } while (!matches);
         return title;
@@ -55,8 +60,8 @@ public class BookView {
                 } else {
                     matches = true;
                 }
-            } catch (BookException author) {
-                logger.error(author.getMessage());
+            } catch (BookException authorException) {
+                logger.error(authorException.getMessage());
             }
         } while (!matches);
         return author;
@@ -65,44 +70,86 @@ public class BookView {
     public int askYearPublished() {
         boolean matches = false;
         do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("What year was the book published?");
-            yearPublished = scanner.nextInt();
-            if (!(BookValidateView.validateYear(yearPublished))) {
-                System.out.println("Please correct the year formatting.");
-            } else {
-                matches = true;
+            try {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("What year was the book published?");
+                yearPublished = scanner.nextInt();
+                if (!(BookValidateView.validateYear(yearPublished))) {
+                    throw (new BookException(("Please correct the year formatting.")));
+                } else {
+                    matches = true;
+                }
+            } catch (BookException yearException) {
+                logger.error(yearException.getMessage());
             }
         } while (!matches);
         return yearPublished;
     }
 
     public String askPublisher() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Who was the book's publisher?");
-        return scanner.nextLine();
+        boolean matches = false;
+        do {
+            try {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Who is the publisher?");
+                publisher = scanner.nextLine();
+                if (!(BookValidateView.validatePublisher(publisher))) {
+                    throw (new BookException(("Please correct the publisher formatting.")));
+                } else {
+                    matches = true;
+                }
+            } catch (BookException publisher) {
+                logger.error(publisher.getMessage());
+            }
+        } while (!matches);
+        
+        return publisher;
     }
 
     public int askPages() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("How many pages long is the book?");
-        return scanner.nextInt();
+        boolean matches = false;
+        do {
+            try {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("How many pages does the book have?");
+                pages = scanner.nextInt();
+                if (!(BookValidateView.validatePages(pages))) {
+                    throw (new BookException(("Please correct the page formatting.")));
+                } else {
+                    matches = true;
+                }
+            } catch (BookException pagesException) {
+                logger.error(pagesException.getMessage());
+            }
+        } while (!matches);
+        return pages;
     }
+    
 
     public String askBriefDescription() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please provide a brief description of the book?");
-        StringBuilder briefDescription = new StringBuilder(scanner.nextLine());
-        while (true) {
-            System.out.println("Would you like to provide an additional line for the brief description? Press \"n\" for no or any other key for yes.");
-            if (scanner.nextLine().equals("n")) {
-                break;
-            } else {
-                System.out.println("Please enter the next line of your description.");
-                briefDescription.append(" " + scanner.nextLine());
-            }
-        }
-        return briefDescription.toString();
+        boolean matches = false;
+        do {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Please provide a brief description of the book?");
+                StringBuilder briefDescriptionBuilder = new StringBuilder(scanner.nextLine());
+                briefDescription = scanner.nextLine();
+                    matches = true;
+                    while (true) {
+                        System.out.println("Would you like to provide an additional line for the brief description? Press \"n\" for no or any other key for yes.");
+                        if (scanner.nextLine().equals("n")) {
+                            break;
+                        } else {
+                            System.out.println("Please enter the next line of your description.");
+                            briefDescriptionBuilder.append(" " + scanner.nextLine());
+                        }
+                }
+                briefDescription = briefDescriptionBuilder.toString();
+        } while (!matches);
+
+        return briefDescription;
     }
 
     public String askThirteenDigitIsbn() {
@@ -122,6 +169,7 @@ public class BookView {
                 logger.error(thirteenDigitIsbnException.getMessage());
             }
         } while (!matches);
+        assert BookValidateView.validateThirteenDigitISBNNumber(thirteenDigitISBN);
         return thirteenDigitISBN;
     }
 
@@ -146,14 +194,42 @@ public class BookView {
     }
 
     public int askCopies() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the number of copies of this book that the library has.");
-        return scanner.nextInt();
+        boolean matches = false;
+        do {
+            try {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("How many copies do you have??");
+                copies = scanner.nextInt();
+                if (!(BookValidateView.validateCopies(copies))) {
+                    throw (new BookException(("Please correct the copies formatting.")));
+                } else {
+                    matches = true;
+                }
+            } catch (BookException copiesException) {
+                logger.error(copiesException.getMessage());
+            }
+        } while (!matches);
+        return copies;
     }
 
     public int askQuantityAvailable() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the quantity of books available (the number that are not checked out). ");
-        return scanner.nextInt();
+        boolean matches = false;
+        do {
+            try {
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("How many do you have available?");
+                quantityAvailable = scanner.nextInt();
+                if (!(BookValidateView.validateQuantityAvailable(quantityAvailable))) {
+                    throw (new BookException(("Please correct the quantity formatting.")));
+                } else {
+                    matches = true;
+                }
+            } catch (BookException quantityException) {
+                logger.error(quantityException.getMessage());
+            }
+        } while (!matches);
+        return quantityAvailable;
     }
 }

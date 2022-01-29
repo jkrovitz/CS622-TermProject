@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class LibrarianLoginRegistrationView {
     LibrarianController librarianController = new LibrarianController();
 
-    public void askToRegisterOrLogin() {
+    public void askToRegisterOrLogin() throws SQLException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
@@ -38,21 +38,11 @@ public class LibrarianLoginRegistrationView {
                     break;
                 case 2:
                     LoginController loginController = new LoginController();
-                    try {
-                        loginController.processLogin(Role.LIBRARIAN.toString());
-                    } catch (SQLException | IOException e) {
-                        System.out.println(e.getMessage());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    loginController.processLogin(Role.LIBRARIAN.toString());
                     break;
                 case 3:
                     librarianController = new LibrarianController();
-                    try {
-                        librarianController.registerUser();
-                    } catch (SQLException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    librarianController.registerUser();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

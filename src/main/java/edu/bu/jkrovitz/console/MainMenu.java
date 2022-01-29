@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class MainMenu {
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException, ParseException {
         int choice;
         Scanner sc = new Scanner(System.in);
         Database.connectToDatabase();

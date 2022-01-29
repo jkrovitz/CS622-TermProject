@@ -46,5 +46,65 @@
     "tenDigitISBN": "ISBN-10: 0-545-81257-7",
     "copies": 1,
     "quantityAvailable": 1
+  },
+  {
+    "title": "test",
+    "author": "test author",
+    "year": 2001,
+    "publisher": "test",
+    "pages": 21,
+    "briefDescription": " e",
+    "thirteenDigitISBN": "ISBN-13: 978-3-234-32345-2",
+    "tenDigitISBN": "ISBN-10: 3-234-32345-2",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "test book",
+    "author": "test author",
+    "year": 2001,
+    "publisher": "test",
+    "pages": 21,
+    "briefDescription": "test",
+    "thirteenDigitISBN": "ISBN-13: 978-1-234-23456-2",
+    "tenDigitISBN": "ISBN-10: 1-234-23456-2",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "Reminders of Him",
+    "author": "Colleen Hoover",
+    "year": 2022,
+    "publisher": "Montlake",
+    "pages": 335,
+    "briefDescription": "A troubled young mother yearns for a shot at redemption in this heartbreaking yet hopeful story from #1 New York Times bestselling author Colleen Hoover.",
+    "thirteenDigitISBN": "ISBN-13: 978-1-542-02560-7",
+    "tenDigitISBN": "ISBN-10: 1-542-02560-7",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "Speak",
+    "author": "Laurie Halse Anderson",
+    "year": 2011,
+    "publisher": "SquareFish",
+    "pages": 224,
+    "briefDescription": "Freshman year at Merryweather High is not going well for Melinda Sordino. She busted an end-of-summer party by calling the cops, and now her friends—and even strangers—all hate her. So she stops trying, stops talking. She retreats into her head, and all the lies and hypocrisies of high school become magnified, leaving her with no desire to talk to anyone anyway. But it’s not so comfortable in her head, either—there’s something banging around in there that she doesn’t want to think about. She can’t just go on like this forever. Eventually, she’s going to have to confront the thing she’s avoiding, the thing that happened at the party, the thing that nobody but her knows. She’s going to have to speak the truth.",
+    "thirteenDigitISBN": "ISBN-13: 978-0-312-67439-7",
+    "tenDigitISBN": "ISBN-10: 0-312-67439-7",
+    "copies": 1,
+    "quantityAvailable": 1
+  },
+  {
+    "title": "Book Lovers",
+    "author": "Emily Henry",
+    "year": 2022,
+    "publisher": "Berkley",
+    "pages": 384,
+    "briefDescription": "Nora Stephens\u0027 life is books—she’s read them all—and she is not that type of heroine. Not the plucky one, not the laidback dream girl, and especially not the sweetheart. In fact, the only people Nora is a heroine for are her clients, for whom she lands enormous deals as a cutthroat literary agent, and her beloved little sister Libby.",
+    "thirteenDigitISBN": "ISBN-13: 978-0-593-44087-2",
+    "tenDigitISBN": "ISBN-10: 0593440870",
+    "copies": 1,
+    "quantityAvailable": 1
   }
 ]

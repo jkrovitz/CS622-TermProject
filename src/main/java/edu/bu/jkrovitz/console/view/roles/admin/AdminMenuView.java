@@ -3,7 +3,10 @@ package edu.bu.jkrovitz.console.view.roles.admin;
 import edu.bu.jkrovitz.console.controller.books.BookController;
 import edu.bu.jkrovitz.console.controller.books.BookListController;
 import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
+import edu.bu.jkrovitz.console.controller.roles.LibraryClerkController;
 import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
+import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -24,7 +27,7 @@ public class AdminMenuView {
             choice = -1;
 
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Go back 2. Add a new book? 3. Add a new Librarian? 4.View list of all book information");
+                System.out.println("Do you want to 0. quit 1. Go back 2. Add a new book? 3. Add a new Librarian? 4.View list of all book information 5. Search for a book 6. Register User 7. Register Checkout Clerk");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -50,6 +53,18 @@ public class AdminMenuView {
                     case 4:
                         BookListController bookListController = new BookListController();
                         bookListController.getBookList();
+                        break;
+                    case 5:
+                        BookSearchMenuView bookSearchMenuView = new BookSearchMenuView();
+                        bookSearchMenuView.chooseBookSearchMethod();
+                        break;
+                    case 6:
+                        LibraryUserController patronController = new PatronController();
+                        patronController.registerUser();
+                        break;
+                    case 7:
+                        LibraryUserController libraryClerkController = new LibraryClerkController();
+                        libraryClerkController.registerUser();
                         break;
                     default:
                         System.out.println("You have chose an invalid option.");

@@ -3,9 +3,13 @@ package edu.bu.jkrovitz.console.view.roles.librarian;
 import edu.bu.jkrovitz.console.controller.books.BookController;
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
 import edu.bu.jkrovitz.console.controller.books.BookListController;
+import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
+import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -14,13 +18,13 @@ import java.util.Scanner;
  */
 public class LibrarianMenuView {
 
-    public void librarianMenu() throws IOException, ParseException {
+    public void librarianMenu() throws IOException, ParseException, SQLException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             choice = -1;
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Go Back 2. Add a new book? 3. Search 4. View list of all book information");
+                System.out.println("Do you want to 0. quit 1. Go Back 2. Add a new book? 3. Search 4. View list of all book information 5. Add patron");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -38,47 +42,20 @@ public class LibrarianMenuView {
                     bookController.processOutput();
                     break;
                 case 3:
-                    chooseBookSearchMethod();
+                    BookSearchMenuView bookSearchMenuView = new BookSearchMenuView();
+                    bookSearchMenuView.chooseBookSearchMethod();
                     break;
                 case 4:
                     BookListController bookListController = new BookListController();
                     bookListController.getBookList();
                     break;
-                default:
-                    System.out.println("You have chose an invalid option.");
-            }
-        } while (choice != 1);
-    }
-
-    public void chooseBookSearchMethod(){
-        Scanner sc = new Scanner(System.in);
-        int choice;
-        do {
-            choice = -1;
-            while (true) {
-                System.out.println("Do you want to 0. quit 1. Go Back 2. Search by title and author 3. Search by ISBN");
-                if (sc.hasNextInt()) {
-                    break;
-                }
-                String input = String.valueOf(sc.next());
-                System.out.println("Your input " + input + " is not an integer. Your input must be an integer. Please try again.\n");
-            }
-            choice = sc.nextInt();
-            switch (choice) {
-                case 0:
-                    System.exit(0);
-                case 1:
-                    break;
-                case 2:
-                    BookFinderController titleAndAuthorSearch = new BookFinderController();
-                    titleAndAuthorSearch.findBookByTitleAndAuthor();
-                    break;
-                case 3:
-                    BookFinderController isbnSearch = new BookFinderController();
-                    isbnSearch.findBookByTenOrThirteenDigitIsbn();
+                case 5:
+                    LibraryUserController patronController = new PatronController();
+                    patronController.registerUser();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");
+                    break;
             }
         } while (choice != 1);
     }

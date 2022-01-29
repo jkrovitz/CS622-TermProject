@@ -2,6 +2,7 @@ package edu.bu.jkrovitz.console.model.accounts;
 
 import edu.bu.jkrovitz.console.model.Database;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +44,8 @@ public class LoginModelReading {
     public boolean retrieveFromDatabase(String role, String username, String password) throws SQLException {
         boolean result = false;
         String query = "SELECT * FROM user_info WHERE username = ? AND password = ? AND user_type = ?";
-        PreparedStatement stmt = Database.connectToDatabase().prepareStatement(query);
+        Connection conn = Database.connectToDatabase();
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, role);
@@ -51,6 +53,7 @@ public class LoginModelReading {
         if (res.next()) {
             result = true;
         }
+        conn.close();
         return result;
     }
 }

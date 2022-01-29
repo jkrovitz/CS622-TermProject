@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.bu.jkrovitz.console.exceptions.book.BookException</OriginalElement>
+  <nodes>
+    <node x="-87.85756621569067" y="536.7279549718573">edu.bu.jkrovitz.console.exceptions.book.BookException</node>
+    <node x="281.56381834126876" y="1098.351664833226">edu.bu.jkrovitz.console.controller.books.BookListController</node>
+    <node x="182.3983521100248" y="2168.5096877818187">edu.bu.jkrovitz.console.model.books.BookFileModel</node>
+    <node x="1166.0385946924348" y="1840.2118268235936">edu.bu.jkrovitz.console.model.books.Book</node>
+    <node x="756.9703889649468" y="828.5590889843204">edu.bu.jkrovitz.console.view.books.BookValidateView</node>
+    <node x="281.56381834126876" y="743.4146941601524">edu.bu.jkrovitz.console.view.books.BookView</node>
+    <node x="0.0" y="1513.6460009394943">edu.bu.jkrovitz.console.controller.books.BookFinderController</node>
+    <node x="1419.0567195288497" y="1353.472396855835">edu.bu.jkrovitz.console.exceptions.book.IsbnException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookListController" target="edu.bu.jkrovitz.console.model.books.Book" relationship="DEPENDENCY">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.model.books.Book" relationship="CREATE">
+      <point x="-2.042756635517094" y="4.563676733517738" />
+      <point x="-2.042756635517094" y="4.563676733517752" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.model.books.Book" target="edu.bu.jkrovitz.console.exceptions.book.IsbnException" relationship="GENERALIZATION">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.model.books.BookFileModel" target="edu.bu.jkrovitz.console.model.books.Book" relationship="CREATE">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.view.books.BookView" target="edu.bu.jkrovitz.console.view.books.BookValidateView" relationship="DEPENDENCY">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.model.books.BookFileModel" relationship="CREATE">
+      <point x="5.452876654133547" y="-0.0" />
+      <point x="5.45287665413349" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.view.books.BookValidateView" relationship="DEPENDENCY">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookListController" target="edu.bu.jkrovitz.console.controller.books.BookFinderController" relationship="GENERALIZATION">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.exceptions.book.IsbnException" relationship="CREATE">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.exceptions.book.IsbnException" target="edu.bu.jkrovitz.console.view.books.BookValidateView" relationship="DEPENDENCY">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.view.books.BookView" target="edu.bu.jkrovitz.console.exceptions.book.BookException" relationship="CREATE">
+      <point x="0.0" y="-0.0" />
+      <point x="0.0" y="-0.0" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.model.books.Book" relationship="TO_ONE">
+      <point x="12.238364357912019" y="-0.0" />
+      <point x="0.0" y="-5.478039190722882" />
+    </edge>
+    <edge source="edu.bu.jkrovitz.console.controller.books.BookFinderController" target="edu.bu.jkrovitz.console.model.books.BookFileModel" relationship="TO_ONE">
+      <point x="-4.584736018381932" y="1.9950427668977824" />
+      <point x="-4.584736018381932" y="1.9950427668977682" />
+    </edge>
+  </edges>
+  <settings layout="Circular" zoom="0.37171381031613976" showDependencies="true" x="806.0000000000003" y="1077.9494180841539" />
+  <SelectedNodes>
+    <node>edu.bu.jkrovitz.console.view.books.BookView</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

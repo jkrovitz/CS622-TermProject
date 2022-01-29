@@ -3,8 +3,6 @@ package edu.bu.jkrovitz.console.controller.books;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import edu.bu.jkrovitz.console.model.books.Book;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileWriter;

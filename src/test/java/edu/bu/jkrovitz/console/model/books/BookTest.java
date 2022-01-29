@@ -1,5 +1,6 @@
 package edu.bu.jkrovitz.console.model.books;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class BookTest {
 
-    private final Book book = new Book();
+    private Book book = null;
 
     @BeforeEach
     void setUp() {
+        book = new Book();
         book.setTitle("The Great Gatsby");
         book.setAuthor("F. Scott Fitzgerald");
         book.setYear(2021);
@@ -23,7 +25,7 @@ class BookTest {
         book.setThirteenDigitISBN("979-8-581-48423-4");
         book.setTenDigitISBN("8-581-48423-4");
         book.setCopies(1);
-        book.setPages(1);
+        book.setQuantityAvailable(1);
     }
 
     @Test
@@ -160,7 +162,10 @@ class BookTest {
     void testToString() {
         String expResult = "Book [\n    title: " + book.getTitle() + ",\n    author: " + book.getAuthor() + ",\n    year: " + book.getYear() + ",\n    publisher: " + book.getPublisher() + ",\n    pages: " + book.getPages() + ",\n    brief description: " + book.getBriefDescription() + ",\n    thirteen digit ISBN: " + book.getThirteenDigitISBN() + ",\n    ten digit ISBN: " + book.getTenDigitISBN() + ",\n    copies: " + book.getCopies() + ",\n    quantity available: " + book.getQuantityAvailable() + "\n]\n\n";
         assertEquals(expResult, book.toString());
+    }
 
-
+    @AfterEach
+    void tearDown() {
+        book = null;
     }
 }

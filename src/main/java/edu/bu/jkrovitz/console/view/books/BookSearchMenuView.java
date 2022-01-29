@@ -1,23 +1,23 @@
-package edu.bu.jkrovitz.console.view.roles.patron;
+package edu.bu.jkrovitz.console.view.books;
 
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
-import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 
 import java.util.Scanner;
 
 /**
- *  Displays a menu after the patron is logged in with a variety of choices they can make.
+ * Class allows any of the roles in the library to search for a book by author and title or ISBN number.
+ *
  * @author Jeremy Krovitz
  */
-public class PatronMenuView {
+public class BookSearchMenuView {
 
-    public void patronMenu() {
+    public void chooseBookSearchMethod(){
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             choice = -1;
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Go back to the main menu 2. Search for a book");
+                System.out.println("Do you want to 0. quit 1. Go Back 2. Search by title and author 3. Search by ISBN");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -31,12 +31,16 @@ public class PatronMenuView {
                 case 1:
                     break;
                 case 2:
-                    BookSearchMenuView bookSearchMenuView = new BookSearchMenuView();
-                    bookSearchMenuView.chooseBookSearchMethod();
+                    BookFinderController titleAndAuthorSearch = new BookFinderController();
+                    titleAndAuthorSearch.findBookByTitleAndAuthor();
+                    break;
+                case 3:
+                    BookFinderController isbnSearch = new BookFinderController();
+                    isbnSearch.findBookByTenOrThirteenDigitIsbn();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");
             }
-        } while (!(choice == 1));
+        } while (choice != 1);
     }
 }

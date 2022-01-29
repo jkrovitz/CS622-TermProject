@@ -18,7 +18,7 @@ public class PatronLoginRegistrationView {
 
     private PatronController patronController = new PatronController();
 
-    public void askToRegisterOrLogin() throws SQLException {
+    public void askToRegisterOrLogin() throws SQLException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
@@ -37,13 +37,7 @@ public class PatronLoginRegistrationView {
                     break;
                 case 2:
                     LoginController loginController = new LoginController();
-                    try {
-                        loginController.processLogin(Role.PATRON.toString());
-                    } catch (SQLException | IOException e) {
-                        System.out.println(e.getMessage());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    loginController.processLogin(Role.PATRON.toString());
                     break;
                 case 3:
                     patronController = new PatronController();

@@ -1,7 +1,11 @@
 package edu.bu.jkrovitz.console.view.roles.libraryclerk;
 
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
+import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
+import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -11,13 +15,13 @@ import java.util.Scanner;
  */
 public class LibraryClerkMenuView {
 
-    public void libraryClerkMenu() {
+    public void libraryClerkMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             choice = -1;
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Search for a book 2. Go back to main menu.");
+                System.out.println("Do you want to 0. quit 1. Go back to main menu. 2. Search for a book 3. Add patron");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -29,14 +33,19 @@ public class LibraryClerkMenuView {
                 case 0:
                     System.exit(0);
                 case 1:
-                    BookFinderController bookControllerFinder = new BookFinderController();
-                    bookControllerFinder.findBookByTitleAndAuthor();
                     break;
                 case 2:
+                    BookSearchMenuView bookSearchMenuView = new BookSearchMenuView();
+                    bookSearchMenuView.chooseBookSearchMethod();
+                    break;
+                case 3:
+                    LibraryUserController patronController = new PatronController();
+                    patronController.registerUser();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");
+                    break;
             }
-        } while (!(choice == 2));
+        } while (!(choice == 1));
     }
 }

@@ -39,8 +39,7 @@ public class BookFinderController {
 
         Gson gson = new Gson();
         boolean found = false;
-        try {
-            FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true);
+        try ( FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true)){
 
             if (file.length() == 0) {
                 System.out.println("There are no books in this file.");
@@ -99,9 +98,6 @@ public class BookFinderController {
 
                 try {
                     for (Book bm : bookList) {
-//                    if ((!(BookValidateView.validateThirteenDigitISBNNumber(isbnInput))) || (!(BookValidateView.validateTenDigitISBNNumber(isbnInput)))){
-//                        System.out.println("\nThe input is invalid ISBN number formatting.");
-//                    }
                         if ((!(BookValidateView.validateTenDigitISBNNumber(isbnInput))) && (!(BookValidateView.validateThirteenDigitISBNNumber(isbnInput)))) {
                             throw new IsbnException("The input is improperly formatted for an isbn number.");
                         }

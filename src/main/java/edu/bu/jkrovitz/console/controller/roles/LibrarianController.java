@@ -29,7 +29,7 @@ public class LibrarianController extends LibraryUserController {
     }
 
     public void registerModel() throws SQLException {
-        registerModel.register(librarian.getUsername(), librarian.getEncryptedPassword(), Role.LIBRARIAN.toString(), librarian.getEmailAddress(), librarian.getFirstName(), librarian.getLastName());
+        registerModel.register(librarian.getUsername(), librarian.getPassword(), Role.LIBRARIAN.toString(), librarian.getEmailAddress(), librarian.getFirstName(), librarian.getLastName());
     }
 
     @Override
