@@ -99,7 +99,7 @@ public class BookFinderController {
                 try {
                     for (Book bm : bookList) {
                         if ((!(BookValidateView.validateTenDigitISBNNumber(isbnInput))) && (!(BookValidateView.validateThirteenDigitISBNNumber(isbnInput)))) {
-                            throw new IsbnException("The input is improperly formatted for an isbn number.");
+                            throw new IsbnException();
                         }
                         if ((bm.getTenDigitISBN().equals(isbnInput)) || (bm.getThirteenDigitISBN().equals(isbnInput))) {
                             System.out.println("\nThe book with the isbn number \"" + isbnInput + "\" has been found:");

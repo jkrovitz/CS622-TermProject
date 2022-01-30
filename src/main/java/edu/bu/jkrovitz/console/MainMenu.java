@@ -2,7 +2,9 @@ package edu.bu.jkrovitz.console;
 
 import edu.bu.jkrovitz.console.controller.AccountController;
 import edu.bu.jkrovitz.console.controller.roles.AdminController;
+import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
+import edu.bu.jkrovitz.console.view.roles.librarian.GenericLoginRegistrationView;
 import edu.bu.jkrovitz.console.view.roles.librarian.LibrarianLoginRegistrationView;
 import edu.bu.jkrovitz.console.view.roles.libraryclerk.LibraryClerkLoginRegistrationView;
 import edu.bu.jkrovitz.console.view.roles.patron.PatronLoginRegistrationView;
@@ -50,16 +52,16 @@ public class MainMenu {
                     }
                     break;
                 case 2:
-                    LibrarianLoginRegistrationView librarianLoginRegistrationView = new LibrarianLoginRegistrationView();
-                    librarianLoginRegistrationView.askToRegisterOrLogin();
+                    GenericLoginRegistrationView librarianLoginRegistrationView = new GenericLoginRegistrationView();
+                    librarianLoginRegistrationView.askToRegisterOrLogin(Role.LIBRARIAN);
                     break;
                 case 3:
-                    LibraryClerkLoginRegistrationView libraryClerkLoginRegistrationView = new LibraryClerkLoginRegistrationView();
-                    libraryClerkLoginRegistrationView.askToRegisterOrLogin();
+                    GenericLoginRegistrationView libraryClerkLoginRegistrationView = new GenericLoginRegistrationView();
+                    libraryClerkLoginRegistrationView.askToRegisterOrLogin(Role.LIBRARY_CLERK);
                     break;
                 case 4:
-                    PatronLoginRegistrationView patronLoginRegistrationView = new PatronLoginRegistrationView();
-                    patronLoginRegistrationView.askToRegisterOrLogin();
+                    GenericLoginRegistrationView patronLoginRegistrationView = new GenericLoginRegistrationView();
+                    patronLoginRegistrationView.askToRegisterOrLogin(Role.PATRON);
                     break;
                 case 0:
                     System.exit(0);

@@ -7,7 +7,7 @@ import edu.bu.jkrovitz.console.exceptions.book.IsbnException;
  *
  * @author Jeremy Krovitz
  */
-public class Book extends IsbnException {
+public class Book {
 
     private String title;
     private String author;
@@ -24,6 +24,7 @@ public class Book extends IsbnException {
     }
 
     public Book(String title, String author, int year, String publisher, int pages, String briefDescription, String thirteenDigitISBN, String tenDigitISBN, int copies, int quantityAvailable) {
+        super();
         this.title = title;
         this.author = author;
         this.year = year;

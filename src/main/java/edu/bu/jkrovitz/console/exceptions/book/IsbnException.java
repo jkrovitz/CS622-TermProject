@@ -6,6 +6,10 @@ public class IsbnException extends Exception{
 
     private String isbn;
 
+    public IsbnException(){
+
+    }
+
     public IsbnException(String message){
         super(message);
     }
