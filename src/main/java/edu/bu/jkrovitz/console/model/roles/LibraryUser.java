@@ -3,11 +3,11 @@ package edu.bu.jkrovitz.console.model.roles;
 import edu.bu.jkrovitz.console.model.accounts.PasswordEncryption;
 
 /**
- * This abstract class sets and gets various attributes relating to a general library user.
+ * This class sets and gets various attributes relating to a general library user.
  *
  * @author Jeremy Krovitz
  */
-public abstract class LibraryUser {
+public class LibraryUser {
 
     private String firstName;
     private String lastName;

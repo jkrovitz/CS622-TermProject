@@ -13,7 +13,6 @@ public class LibraryClerkProfileInformationView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
-    private String roleType;
 
     @Override
     public String askFirstName() {
@@ -45,9 +44,4 @@ public class LibraryClerkProfileInformationView extends LibraryUserView {
         return password;
     }
 
-    @Override
-    public String askRoleType() {
-        roleType = super.askRoleType();
-        return roleType;
-    }
 }

@@ -11,6 +11,4 @@ public abstract class LibraryUserController {
 
     public abstract void getInformation();
 
-    public abstract void registerUser() throws SQLException;
-
 }

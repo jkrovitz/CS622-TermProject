@@ -1,5 +1,6 @@
 package edu.bu.jkrovitz.console.controller;
 
+import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.accounts.LoginModelReading;
 import edu.bu.jkrovitz.console.view.LoginView;
 import edu.bu.jkrovitz.console.view.SpecificRoleMenuView;
@@ -19,13 +20,14 @@ public class LoginController {
     LoginView loginView = new LoginView();
     LoginModelReading loginModel = new LoginModelReading();
 
-    public void retrieveFromDatabase(String role) throws SQLException, IOException, ParseException {
+    public void retrieveFromDatabase(Role role) throws SQLException, IOException, ParseException {
         String keepGoing = "";
         do {
             String username = loginModel.setUsername(loginView.enterUsername());
             String password = loginModel.setEncryptedPassword(loginModel.setPassword(loginView.enterPassword()));
             Scanner sc = new Scanner(System.in);
-            boolean result = loginModel.retrieveFromDatabase(role, username, password);
+            String stringRole = role.toString();
+            boolean result = loginModel.retrieveFromDatabase(stringRole, username, password);
             if (result) {
                 SpecificRoleMenuView specificRoleMenuView = new SpecificRoleMenuView();
                 specificRoleMenuView.openSpecificRoleMenu(role);
@@ -42,7 +44,7 @@ public class LoginController {
         } while (true);
     }
 
-    public void processLogin(String role) throws SQLException, IOException, ParseException {
+    public void processLogin(Role role) throws SQLException, IOException, ParseException {
         retrieveFromDatabase(role);
     }
 }

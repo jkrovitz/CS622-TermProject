@@ -1,13 +1,14 @@
 package edu.bu.jkrovitz.console;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import edu.bu.jkrovitz.console.controller.AccountController;
 import edu.bu.jkrovitz.console.controller.roles.AdminController;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
-import edu.bu.jkrovitz.console.view.roles.librarian.GenericLoginRegistrationView;
-import edu.bu.jkrovitz.console.view.roles.librarian.LibrarianLoginRegistrationView;
-import edu.bu.jkrovitz.console.view.roles.libraryclerk.LibraryClerkLoginRegistrationView;
-import edu.bu.jkrovitz.console.view.roles.patron.PatronLoginRegistrationView;
+import edu.bu.jkrovitz.console.model.MongoDb;
+import edu.bu.jkrovitz.console.view.roles.genericRole.GenericLoginRegistrationView;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -26,6 +27,10 @@ public class MainMenu {
         Scanner sc = new Scanner(System.in);
         Database.connectToDatabase();
         Database.createTables();
+        MongoDb mongoDb = new MongoDb();
+//        MongoCollection collection = mongoDb.createCollection();
+        mongoDb.createConnection();
+
         choice = -1;
         do {
             choice = -1;

@@ -32,7 +32,6 @@ public class LibraryClerkController extends LibraryUserController{
         registerModel.register(libraryClerk.getUsername(), libraryClerk.getEncryptedPassword(), Role.LIBRARY_CLERK.toString(), libraryClerk.getEmailAddress(), libraryClerk.getFirstName(), libraryClerk.getLastName());
     }
 
-    @Override
     public void registerUser() throws SQLException {
         getInformation();
         registerModel();

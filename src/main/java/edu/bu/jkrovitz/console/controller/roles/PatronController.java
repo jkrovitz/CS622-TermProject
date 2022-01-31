@@ -32,7 +32,6 @@ public class PatronController extends LibraryUserController{
         registerModel.register(patronModel.getUsername(), patronModel.getEncryptedPassword(), Role.PATRON.toString(), patronModel.getEmailAddress(), patronModel.getFirstName(), patronModel.getLastName());
     }
 
-    @Override
     public void registerUser() throws SQLException {
         getInformation();
         registerModel();

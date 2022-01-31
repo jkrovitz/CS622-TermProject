@@ -1,8 +1,10 @@
 package edu.bu.jkrovitz.console.view.roles.libraryclerk;
 
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
+import edu.bu.jkrovitz.console.controller.roles.GenericRoleController;
 import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
 import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 
 import java.sql.SQLException;
@@ -39,8 +41,8 @@ public class LibraryClerkMenuView {
                     bookSearchMenuView.chooseBookSearchMethod();
                     break;
                 case 3:
-                    LibraryUserController patronController = new PatronController();
-                    patronController.registerUser();
+                    GenericRoleController<PatronController> patronController = new GenericRoleController<PatronController>();
+                    patronController.registerUser(Role.PATRON);
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

@@ -2,10 +2,10 @@ package edu.bu.jkrovitz.console.view.roles.admin;
 
 import edu.bu.jkrovitz.console.controller.books.BookController;
 import edu.bu.jkrovitz.console.controller.books.BookListController;
-import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
-import edu.bu.jkrovitz.console.controller.roles.LibraryClerkController;
-import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
-import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.controller.roles.*;
+import edu.bu.jkrovitz.console.enums.Role;
+import edu.bu.jkrovitz.console.model.roles.Librarian;
+import edu.bu.jkrovitz.console.model.roles.Patron;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import org.json.simple.parser.ParseException;
 
@@ -47,8 +47,8 @@ public class AdminMenuView {
                         bookController.processOutput();
                         break;
                     case 3:
-                        LibraryUserController librarian = new LibrarianController();
-                        librarian.registerUser();
+                        GenericRoleController librarian = new GenericRoleController();
+                        librarian.registerUser(Role.LIBRARIAN);
                         break;
                     case 4:
                         BookListController bookListController = new BookListController();
@@ -59,12 +59,12 @@ public class AdminMenuView {
                         bookSearchMenuView.chooseBookSearchMethod();
                         break;
                     case 6:
-                        LibraryUserController patronController = new PatronController();
-                        patronController.registerUser();
+                        GenericRoleController<Patron> patronController = new GenericRoleController<>();
+                        patronController.registerUser(Role.PATRON);
                         break;
                     case 7:
-                        LibraryUserController libraryClerkController = new LibraryClerkController();
-                        libraryClerkController.registerUser();
+                        GenericRoleController<Librarian> libraryClerkController = new GenericRoleController<>();
+                        libraryClerkController.registerUser(Role.LIBRARY_CLERK);
                         break;
                     default:
                         System.out.println("You have chose an invalid option.");

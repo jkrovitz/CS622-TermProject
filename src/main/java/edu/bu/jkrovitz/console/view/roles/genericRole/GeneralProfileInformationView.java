@@ -1,4 +1,4 @@
-package edu.bu.jkrovitz.console.view.roles.librarian;
+package edu.bu.jkrovitz.console.view.roles.genericRole;
 
 import edu.bu.jkrovitz.console.view.roles.LibraryUserView;
 
@@ -13,7 +13,6 @@ public class GeneralProfileInformationView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
-    private String roleType;
 
     @Override
     public String askFirstName() {
@@ -43,11 +42,5 @@ public class GeneralProfileInformationView extends LibraryUserView {
     public String askPassword() {
         password = super.askPassword();
         return password;
-    }
-
-    @Override
-    public String askRoleType() {
-        roleType = super.askRoleType();
-        return roleType;
     }
 }

@@ -13,7 +13,6 @@ public class PatronProfileInformationView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
-    private String roleType;
 
     @Override
     public String askFirstName() {
@@ -43,11 +42,5 @@ public class PatronProfileInformationView extends LibraryUserView {
     public String askPassword() {
         password = super.askPassword();
         return password;
-    }
-
-    @Override
-    public String askRoleType() {
-        roleType = super.askRoleType();
-        return roleType;
     }
 }

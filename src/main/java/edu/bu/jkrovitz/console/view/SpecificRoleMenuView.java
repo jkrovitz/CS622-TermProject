@@ -17,20 +17,20 @@ import java.sql.SQLException;
  */
 public class SpecificRoleMenuView {
 
-    public void openSpecificRoleMenu(String role) throws SQLException, IOException, ParseException {
-        if (role.equals(Role.PATRON.toString())) {
+    public void openSpecificRoleMenu(Role role) throws SQLException, IOException, ParseException {
+        if (role.equals(Role.PATRON)) {
             PatronMenuView patronMenuView = new PatronMenuView();
             patronMenuView.patronMenu();
         }
-        if (role.equals(Role.LIBRARY_CLERK.toString())) {
+        if (role.equals(Role.LIBRARY_CLERK)) {
             LibraryClerkMenuView libraryClerkMenuView = new LibraryClerkMenuView();
             libraryClerkMenuView.libraryClerkMenu();
         }
-        if (role.equals(Role.LIBRARIAN.toString())) {
+        if (role.equals(Role.LIBRARIAN)) {
             LibrarianMenuView librarianMenuView = new LibrarianMenuView();
             librarianMenuView.librarianMenu();
         }
-        if (role.equals(Role.ADMIN.toString())) {
+        if (role.equals(Role.ADMIN)) {
             AdminMenuView adminMenuView = new AdminMenuView();
             adminMenuView.adminMenu();
         }

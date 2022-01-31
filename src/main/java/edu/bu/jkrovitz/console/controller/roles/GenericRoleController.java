@@ -3,7 +3,7 @@ package edu.bu.jkrovitz.console.controller.roles;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.accounts.RegisterModel;
 import edu.bu.jkrovitz.console.model.roles.UserType;
-import edu.bu.jkrovitz.console.view.roles.librarian.GeneralProfileInformationView;
+import edu.bu.jkrovitz.console.view.roles.genericRole.GeneralProfileInformationView;
 
 import java.sql.SQLException;
 
@@ -13,23 +13,11 @@ import java.sql.SQLException;
  *
  * @author Jeremy Krovitz
  */
-public class GenericController<T> extends LibraryUserController {
+public class GenericRoleController<T> extends LibraryUserController {
 
-    public T t;
     GeneralProfileInformationView generalProfileInformationView = new GeneralProfileInformationView();
     UserType<T> userType = new UserType<T>();
-    //    LibrarianProfileInformationView generalProfileInformationView = new LibrarianProfileInformationView();
-//    Librarian userType = new Librarian();
     RegisterModel registerModel = new RegisterModel();
-    Role role;
-
-    public void setT(T t){
-        this.t = t;
-    }
-
-    public T getT(){
-        return this.t;
-    }
 
     @Override
     public void getInformation(){
@@ -47,9 +35,5 @@ public class GenericController<T> extends LibraryUserController {
     public void registerUser(Role role) throws SQLException {
         getInformation();
         registerModel(role);
-    }
-
-    public void registerUser(){
-
     }
 }

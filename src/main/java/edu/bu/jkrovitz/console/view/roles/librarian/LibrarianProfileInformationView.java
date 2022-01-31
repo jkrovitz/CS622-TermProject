@@ -14,8 +14,6 @@ public class LibrarianProfileInformationView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
-    private String roleType;
-    private LibrarianController librarianController;
 
     @Override
     public String askFirstName() {
@@ -45,11 +43,5 @@ public class LibrarianProfileInformationView extends LibraryUserView {
     public String askPassword() {
         password = super.askPassword();
         return password;
-    }
-
-    @Override
-    public String askRoleType() {
-        roleType = super.askRoleType();
-        return roleType;
     }
 }

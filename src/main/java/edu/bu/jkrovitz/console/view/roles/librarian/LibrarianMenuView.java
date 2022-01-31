@@ -3,8 +3,12 @@ package edu.bu.jkrovitz.console.view.roles.librarian;
 import edu.bu.jkrovitz.console.controller.books.BookController;
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
 import edu.bu.jkrovitz.console.controller.books.BookListController;
+import edu.bu.jkrovitz.console.controller.roles.GenericRoleController;
 import edu.bu.jkrovitz.console.controller.roles.LibraryUserController;
 import edu.bu.jkrovitz.console.controller.roles.PatronController;
+import edu.bu.jkrovitz.console.enums.Role;
+import edu.bu.jkrovitz.console.model.roles.Patron;
+import edu.bu.jkrovitz.console.model.roles.UserType;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import org.json.simple.parser.ParseException;
 
@@ -50,8 +54,8 @@ public class LibrarianMenuView {
                     bookListController.getBookList();
                     break;
                 case 5:
-                    LibraryUserController patronController = new PatronController();
-                    patronController.registerUser();
+                    GenericRoleController<UserType<Patron>> patronController = new GenericRoleController<>();
+                    patronController.registerUser(Role.PATRON);
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

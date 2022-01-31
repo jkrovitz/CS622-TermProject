@@ -1,8 +1,7 @@
-package edu.bu.jkrovitz.console.view.roles.librarian;
+package edu.bu.jkrovitz.console.view.roles.genericRole;
 
 import edu.bu.jkrovitz.console.controller.LoginController;
-import edu.bu.jkrovitz.console.controller.roles.GenericController;
-import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
+import edu.bu.jkrovitz.console.controller.roles.GenericRoleController;
 import edu.bu.jkrovitz.console.enums.Role;
 import org.json.simple.parser.ParseException;
 
@@ -38,11 +37,11 @@ public class GenericLoginRegistrationView {
                     break;
                 case 2:
                     LoginController loginController = new LoginController();
-                    loginController.processLogin(role.toString());
+                    loginController.processLogin(role);
                     break;
                 case 3:
-                    GenericController<T> genericController = new GenericController<>();
-                    genericController.registerUser(role);
+                    GenericRoleController<T> genericRoleController = new GenericRoleController<>();
+                    genericRoleController.registerUser(role);
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

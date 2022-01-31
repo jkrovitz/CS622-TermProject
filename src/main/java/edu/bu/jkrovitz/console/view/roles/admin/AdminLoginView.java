@@ -1,5 +1,7 @@
 package edu.bu.jkrovitz.console.view.roles.admin;
 
+import edu.bu.jkrovitz.console.enums.Role;
+
 import java.util.Scanner;
 
 /***
@@ -13,7 +15,7 @@ public class AdminLoginView {
         String username = loginInput.nextLine();
         System.out.println("What is your password?");
         String password = loginInput.nextLine();
-        String role = "admin";
+        String role = Role.ADMIN.toString();
         userAttributes[0] = username;
         userAttributes[1] = password;
         userAttributes[2] = role;

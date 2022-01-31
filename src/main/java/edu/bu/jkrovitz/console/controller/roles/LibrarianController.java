@@ -32,7 +32,6 @@ public class LibrarianController extends LibraryUserController {
         registerModel.register(librarian.getUsername(), librarian.getPassword(), Role.LIBRARIAN.toString(), librarian.getEmailAddress(), librarian.getFirstName(), librarian.getLastName());
     }
 
-    @Override
     public void registerUser() throws SQLException {
         getInformation();
         registerModel();

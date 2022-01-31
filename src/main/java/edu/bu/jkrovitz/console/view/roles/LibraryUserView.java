@@ -36,10 +36,4 @@ public abstract class LibraryUserView {
         System.out.println("Please enter a password");
         return scanner.nextLine();
     }
-
-    public String askRoleType() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the role type.");
-        return scanner.nextLine();
-    }
 }
