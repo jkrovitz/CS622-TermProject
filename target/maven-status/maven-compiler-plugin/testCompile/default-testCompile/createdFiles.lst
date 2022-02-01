@@ -1,0 +1,11 @@
+edu/bu/jkrovitz/console/controller/roles/GenericRoleControllerTest.class
+edu/bu/jkrovitz/console/model/roles/LibraryClerkTest.class
+edu/bu/jkrovitz/console/model/roles/LibrarianTest.class
+edu/bu/jkrovitz/console/model/roles/PatronTest.class
+edu/bu/jkrovitz/console/view/roles/PatronProfileInformationViewTest.class
+edu/bu/jkrovitz/console/model/roles/LibraryUserTest.class
+edu/bu/jkrovitz/console/view/books/BookValidateViewTest.class
+edu/bu/jkrovitz/console/view/roles/LibraryClerkProfileInformationViewTest.class
+edu/bu/jkrovitz/console/view/roles/LibrarianProfileInformationViewTest.class
+edu/bu/jkrovitz/console/model/books/BookTest.class
+edu/bu/jkrovitz/console/model/books/BookFileModelTest.class

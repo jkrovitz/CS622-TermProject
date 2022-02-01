@@ -19,6 +19,7 @@ public class BookController {
     Book book = new Book();
     BookFileModel bookFileModel = new BookFileModel();
     BookFinderView bookFinderView = new BookFinderView();
+    private static final String BOOK_JSON_FILE = "./src/main/resources/edu.bu.jkrovitz.json/books.json";
 
     public void setBookInformation() {
         book.setTitle(view.askTitle());
@@ -34,7 +35,8 @@ public class BookController {
     }
 
     public void outputBooksToFile() throws IOException, ParseException {
-        bookFileModel.addToBookFile(book.getTitle(), book.getAuthor(), book.getYear(), book.getPublisher(), book.getPages(), book.getBriefDescription(), book.getThirteenDigitISBN(), book.getTenDigitISBN(), book.getCopies(), book.getQuantityAvailable());
+        BookFileModel bookFileModel = new BookFileModel();
+        bookFileModel.addToBookFile(BOOK_JSON_FILE, book.getTitle(), book.getAuthor(), book.getYear(), book.getPublisher(), book.getPages(), book.getBriefDescription(), book.getThirteenDigitISBN(), book.getTenDigitISBN(), book.getCopies(), book.getQuantityAvailable());
     }
 
     public void processOutput() throws IOException, ParseException {

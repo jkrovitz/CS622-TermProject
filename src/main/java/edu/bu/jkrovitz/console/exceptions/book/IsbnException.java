@@ -4,21 +4,12 @@ import edu.bu.jkrovitz.console.view.books.BookValidateView;
 
 public class IsbnException extends Exception{
 
-    private String isbn;
-
     public IsbnException(){
-
+        super ("The ISBN is formatted incorrectly.");
     }
 
-    public IsbnException(String message){
-        super(message);
-    }
+    public IsbnException(String errorMessage){
+        super(errorMessage);
 
-    public boolean invalidIsbn() {
-        if ((!(BookValidateView.validateThirteenDigitISBNNumber(isbn))) && (!(BookValidateView.validateTenDigitISBNNumber(isbn)))) {
-            System.out.println("\nThe input is invalid ISBN number formatting.");
-            return true;
-        }
-        return false;
     }
 }

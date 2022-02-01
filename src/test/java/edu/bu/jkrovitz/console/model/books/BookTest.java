@@ -29,6 +29,21 @@ class BookTest {
     }
 
     @Test
+    void testConstructor(){
+        Book bookToTest = new Book("Frankenstein", "Mary Shelley", 1994, "Dover Publications", 166, "The story of Victor Frankenstein's terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.", "ISBN-13: 978-0-486-28211-4", "ISBN-10: 0-486-28211-4", 1, 1);
+        assertEquals("Frankenstein", bookToTest.getTitle());
+        assertEquals("Mary Shelley", bookToTest.getAuthor());
+        assertEquals(1994, bookToTest.getYear());
+        assertEquals("Dover Publications", bookToTest.getPublisher());
+        assertEquals(166, bookToTest.getPages());
+        assertEquals("The story of Victor Frankenstein's terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.", bookToTest.getBriefDescription());
+        assertEquals("ISBN-13: 978-0-486-28211-4", bookToTest.getThirteenDigitISBN());
+        assertEquals("ISBN-10: 0-486-28211-4", bookToTest.getTenDigitISBN());
+        assertEquals(1, bookToTest.getCopies());
+        assertEquals(1, bookToTest.getQuantityAvailable());
+    }
+
+    @Test
     void getTitle() {
         String expResult = "The Great Gatsby";
         assertEquals(expResult, book.getTitle());

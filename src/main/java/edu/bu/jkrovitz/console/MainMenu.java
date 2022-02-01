@@ -8,6 +8,7 @@ import edu.bu.jkrovitz.console.controller.roles.AdminController;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
 import edu.bu.jkrovitz.console.model.MongoDb;
+import edu.bu.jkrovitz.console.model.books.BookFileModel;
 import edu.bu.jkrovitz.console.view.roles.genericRole.GenericLoginRegistrationView;
 import org.json.simple.parser.ParseException;
 
