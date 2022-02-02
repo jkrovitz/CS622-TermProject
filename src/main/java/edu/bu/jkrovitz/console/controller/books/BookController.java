@@ -15,14 +15,14 @@ import java.io.IOException;
  * @author Jeremy Krovitz
  */
 public class BookController {
-    BookView view = new BookView();
+    BookView<java.io.Serializable> view = new BookView<java.io.Serializable>();
     Book book = new Book();
     BookFileModel bookFileModel = new BookFileModel();
     BookFinderView bookFinderView = new BookFinderView();
     private static final String BOOK_JSON_FILE = "./src/main/resources/edu.bu.jkrovitz.json/books.json";
 
     public void setBookInformation() {
-        book.setTitle(view.askTitle());
+        book.setTitle((view.askTitle()));
         book.setAuthor(view.askAuthor());
         book.setYear(view.askYearPublished());
         book.setPublisher(view.askPublisher());

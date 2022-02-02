@@ -29,32 +29,40 @@ class BookFileModelTest {
     private File file;
     private FileWriter fileWriter;
     private Gson gson;
+    private Path path;
 
     @BeforeEach
     void setUp() {
-        book = new Book("Frankenstein", "Mary Shelley", 1994, "Dover Publications, Inc.", 166, "The story of Victor Frankenstein's terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.", "ISBN-13: 978-0-486-28211-4", "ISBN-10: 0-486-28211-4", 1, 1);
-        file = null;
-        fileWriter = null;
-        gson = null;
-        PrintWriter printWriter = null;
-        try {
-            printWriter = new PrintWriter("./src/test/resources/edu.bu.jkrovitz/csvs/books.csv");
-            printWriter.write("");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //Any other fields that are going to be reused should go in here
+        path = tempDir.resolve(tempDir + "booktest.json");
+        file = new File(String.valueOf(path));
+//        book = new Book("Frankenstein", "Mary Shelley", 1994, "Dover Publications, Inc.", 166, "The story of Victor Frankenstein's terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.", "ISBN-13: 978-0-486-28211-4", "ISBN-10: 0-486-28211-4", 1, 1);
+//        file = null;
+//        fileWriter = null;
+//        gson = null;
+//        PrintWriter printWriter = null;
+//        try {
+//            printWriter = new PrintWriter("./src/test/resources/edu.bu.jkrovitz/csvs/books.csv");
+//            printWriter.write("");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
     @AfterEach
     void tearDown() {
+        //clean up the file by closing it and making sure that the operating system deletes it.
     }
 
 
+
+//File that serves as base that changes - already doing this
+    //File should be written out to temporary file
+    //Make sure when the test runs that the file gets into the same state
     @Test
     void testAddBookToFile() {
         BookFileModel bookFileModel = new BookFileModel();
-        Path path = tempDir.resolve(tempDir + "booktest.json");
         try (FileWriter fileWriter = new FileWriter(String.valueOf(path), true)) {
             String jsonString = bookFileModel.addToBookFile(path.toString(), "Frankenstein", "Mary Shelley", 1994, "Dover Publications", 166, "The story of Victor Frankenstein's terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.", "ISBN-13: 978-0-486-28211-4", "ISBN-10: 0-486-28211-4", 1, 1);
             String expected = "{\"title\":\"Frankenstein\",\"author\":\"Mary Shelley\",\"year\":1994,\"publisher\":\"Dover Publications\",\"pages\":166,\"briefDescription\":\"The story of Victor Frankenstein\\u0027s terrible creation and the havoc it caused has enthralled generations of readers and inspired countless writers of horror and suspense.\",\"thirteenDigitISBN\":\"ISBN-13: 978-0-486-28211-4\",\"tenDigitISBN\":\"ISBN-10: 0-486-28211-4\",\"copies\":1,\"quantityAvailable\":1}";
@@ -69,8 +77,8 @@ class BookFileModelTest {
         Gson gson = null;
         BookFileModel bookFileModel = new BookFileModel();
         Book book = null;
-        Path path = tempDir.resolve(tempDir + "booktest.json");
-        File file = new File(String.valueOf(path));
+//        Path path = tempDir.resolve(tempDir + "booktest.json");
+//        File file = new File(String.valueOf(path));
 //        NullPointerException npe = null;
 //        String expectedErrorMessage = npe.getMessage();
 
@@ -90,6 +98,10 @@ class BookFileModelTest {
         catch (IOException ioe){
             System.out.println(ioe.getMessage());
         }
+
+        //Use assertThrows for exceptions
+        // Put each exception in a different test
+        // Write get first and get last function
     }
 
 //        @ParameterizedTest

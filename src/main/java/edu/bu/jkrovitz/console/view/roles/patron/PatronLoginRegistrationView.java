@@ -1,6 +1,7 @@
-package edu.bu.jkrovitz.console.view.roles.genericRole;
+package edu.bu.jkrovitz.console.view.roles.patron;
 
 import edu.bu.jkrovitz.console.controller.accounts.LoginController;
+import edu.bu.jkrovitz.console.controller.roles.GenericRoleController;
 import edu.bu.jkrovitz.console.enums.Role;
 import org.json.simple.parser.ParseException;
 
@@ -8,19 +9,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-/**
- * Displays a menu where the user can decide to exit, go back, login, or register.
- *
- * @author Jeremy Krovitz
- */
-public class GenericLoginRegistrationView {
-
+public class PatronLoginRegistrationView {
     public <T> void askToRegisterOrLogin(Role role) throws SQLException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Go back 2. Login");
+                System.out.println("Do you want to 0. quit 1. Go back 2. Login 3. Register");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -37,6 +32,10 @@ public class GenericLoginRegistrationView {
                 case 2:
                     LoginController loginController = new LoginController();
                     loginController.processLogin(role);
+                    break;
+                case 3:
+                    GenericRoleController<T> genericRoleController = new GenericRoleController<>();
+                    genericRoleController.registerUser(role);
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

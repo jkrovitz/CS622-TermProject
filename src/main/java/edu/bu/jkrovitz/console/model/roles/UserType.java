@@ -10,6 +10,7 @@ public class UserType<T> extends LibraryUser {
     private String emailAddress;
     private String username;
     private String password;
+    private String confirmationPassword;
 
     @Override
     public String getFirstName() {
@@ -17,8 +18,9 @@ public class UserType<T> extends LibraryUser {
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public String setFirstName(String firstName) {
         this.firstName = firstName;
+        return this.firstName;
     }
 
     @Override
@@ -27,8 +29,9 @@ public class UserType<T> extends LibraryUser {
     }
 
     @Override
-    public void setLastName(String lastName) {
+    public String setLastName(String lastName) {
         this.lastName = lastName;
+        return this.lastName;
     }
 
     @Override
@@ -37,8 +40,9 @@ public class UserType<T> extends LibraryUser {
     }
 
     @Override
-    public void setEmailAddress(String emailAddress) {
+    public String setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+        return this.emailAddress;
     }
 
     @Override
@@ -68,8 +72,32 @@ public class UserType<T> extends LibraryUser {
     }
 
     @Override
-    public void setEncryptedPassword(String password) {
+    public String setEncryptedPassword(String password) {
         password = PasswordEncryption.encrypt(this.password);
         this.password = password;
+        return this.password;
+    }
+
+    @Override
+    public String getConfirmationPassword() {
+        return confirmationPassword;
+    }
+
+    @Override
+    public String setConfirmationPassword(String confirmationPassword) {
+        this.confirmationPassword = confirmationPassword;
+        return this.confirmationPassword;
+    }
+
+    @Override
+    public String getEncryptedConfirmationPassword() {
+        return this.confirmationPassword;
+    }
+
+    @Override
+    public String setEncryptedConfirmationPassword(String confirmationPassword) {
+        confirmationPassword = PasswordEncryption.encrypt(this.confirmationPassword);
+        this.confirmationPassword = confirmationPassword;
+        return this.confirmationPassword;
     }
 }

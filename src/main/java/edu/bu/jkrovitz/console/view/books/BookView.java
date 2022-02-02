@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Jeremy Krovitz
  */
-public class BookView {
+public class BookView<T> {
 
     private static final Logger logger = LogManager.getLogger(BookView.class);
     private String title;
@@ -231,5 +231,9 @@ public class BookView {
             }
         } while (!matches);
         return quantityAvailable;
+    }
+
+    public T ask(T t) {
+        return t;
     }
 }

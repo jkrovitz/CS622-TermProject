@@ -14,46 +14,42 @@ import java.sql.SQLException;
  */
 public class LoginModelReading {
 
-    private String username;
-    private String password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String setUsername(String username) {
-        this.username = username;
-        return this.username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String setPassword(String password) {
-        this.password = password;
-        return this.password;
-    }
-
-    public String setEncryptedPassword(String password) {
-        password = PasswordEncryption.encrypt(this.password);
-        this.password = password;
-        return this.password;
-    }
-
-    public boolean retrieveFromDatabase(String role, String username, String password) throws SQLException {
-        boolean result = false;
+    public ResultSet  retrieveFromDatabase(String role, String username, String password, Connection conn) throws SQLException {
         String query = "SELECT * FROM user_info WHERE username = ? AND password = ? AND user_type = ?";
-        Connection conn = Database.connectToDatabase();
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, role);
-        ResultSet res = stmt.executeQuery();
-        if (res.next()) {
+        return stmt.executeQuery();
+    }
+
+    public boolean validateLogin(String role, String username, String password) throws SQLException{
+        boolean result = false;
+        Connection conn = Database.connectToDatabase();
+        ResultSet resultSet = retrieveFromDatabase(role, username, password, conn);
+        if (resultSet.next()) {
             result = true;
         }
         conn.close();
         return result;
+    }
+
+    public void displayResultsSet(String role, String username, String password) throws SQLException {
+
+        try (Connection conn = Database.connectToDatabase();
+             ResultSet resultSet = retrieveFromDatabase(role, username, password, conn)){
+            while (resultSet.next()){
+                System.out.println("\nProfile Information for " + (resultSet.getString("username") + ":\n" +
+                        "First Name: " + resultSet.getString("first_name") + "\n" +
+                        "Last Name: " + resultSet.getString("last_name") + "\n" +
+                        "User Type: " + resultSet.getString("user_type") + "\n" +
+                        "Email Address: " + resultSet.getString("email_address") + "\n"));
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }

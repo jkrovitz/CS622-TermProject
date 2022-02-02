@@ -1,7 +1,8 @@
 package edu.bu.jkrovitz.console.view.roles.patron;
 
-import edu.bu.jkrovitz.console.controller.books.BookFinderController;
+import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
+import edu.bu.jkrovitz.console.view.roles.genericRole.ProfileInformationConfirmation;
 
 import java.util.Scanner;
 
@@ -11,13 +12,13 @@ import java.util.Scanner;
  */
 public class PatronMenuView {
 
-    public void patronMenu() {
+    public void patronMenu(Role role, String username, String password) {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
             choice = -1;
             while (true) {
-                System.out.println("Do you want to 0. quit 1. Go back to the main menu 2. Search for a book");
+                System.out.println("Do you want to 0. quit 1. Go back to the main menu 2. Search for a book 3. View your profile");
                 if (sc.hasNextInt()) {
                     break;
                 }
@@ -33,6 +34,10 @@ public class PatronMenuView {
                 case 2:
                     BookSearchMenuView bookSearchMenuView = new BookSearchMenuView();
                     bookSearchMenuView.chooseBookSearchMethod();
+                    break;
+                case 3:
+                    ProfileInformationConfirmation profileInformationConfirmation = new ProfileInformationConfirmation();
+                    profileInformationConfirmation.viewProfileConfirmation(role, username, password);
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");

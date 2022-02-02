@@ -21,8 +21,22 @@ public class GenericRoleController<T> extends LibraryUserController {
 
     @Override
     public void getInformation(){
+        String password = null;
+        String confirmationPassword = null;
+
         userType.setUsername(generalProfileInformationView.askUsername());
-        userType.setEncryptedPassword(userType.setPassword(generalProfileInformationView.askPassword()));
+
+        do {
+            password = generalProfileInformationView.askPassword();
+            confirmationPassword = generalProfileInformationView.askPasswordConfirmation();
+            if (password.equals(confirmationPassword)) {
+                break;
+            }
+            System.out.println("The two passwords do not match. Please try again.");
+        } while(!password.equals(confirmationPassword));
+
+        userType.setEncryptedPassword(userType.setPassword(password));
+        userType.setEncryptedConfirmationPassword(userType.setConfirmationPassword(confirmationPassword));
         userType.setEmailAddress(generalProfileInformationView.askEmailAddress());
         userType.setFirstName(generalProfileInformationView.askFirstName());
         userType.setLastName(generalProfileInformationView.askLastName());

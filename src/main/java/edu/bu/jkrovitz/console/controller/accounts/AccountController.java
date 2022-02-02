@@ -1,4 +1,4 @@
-package edu.bu.jkrovitz.console.controller;
+package edu.bu.jkrovitz.console.controller.accounts;
 
 import org.json.simple.parser.ParseException;
 

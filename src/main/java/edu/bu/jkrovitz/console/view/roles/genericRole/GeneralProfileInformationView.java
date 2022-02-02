@@ -13,6 +13,7 @@ public class GeneralProfileInformationView extends LibraryUserView {
     private String emailAddress;
     private String username;
     private String password;
+    private String passwordConfirmation;
 
     @Override
     public String askFirstName() {
@@ -42,5 +43,11 @@ public class GeneralProfileInformationView extends LibraryUserView {
     public String askPassword() {
         password = super.askPassword();
         return password;
+    }
+
+    @Override
+    public String askPasswordConfirmation() {
+        passwordConfirmation = super.askPasswordConfirmation();
+        return passwordConfirmation;
     }
 }

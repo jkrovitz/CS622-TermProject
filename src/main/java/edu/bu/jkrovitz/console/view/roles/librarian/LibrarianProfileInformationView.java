@@ -1,6 +1,5 @@
 package edu.bu.jkrovitz.console.view.roles.librarian;
 
-import edu.bu.jkrovitz.console.controller.roles.LibrarianController;
 import edu.bu.jkrovitz.console.view.roles.LibraryUserView;
 
 /**

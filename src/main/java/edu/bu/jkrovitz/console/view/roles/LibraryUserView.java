@@ -36,4 +36,10 @@ public abstract class LibraryUserView {
         System.out.println("Please enter a password");
         return scanner.nextLine();
     }
+
+    protected String askPasswordConfirmation() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please confirm your password.");
+        return sc.nextLine();
+    }
 }

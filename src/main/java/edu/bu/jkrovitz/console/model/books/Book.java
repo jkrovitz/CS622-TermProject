@@ -1,7 +1,5 @@
 package edu.bu.jkrovitz.console.model.books;
 
-import edu.bu.jkrovitz.console.exceptions.book.IsbnException;
-
 /**
  * The class Book sets/gets the various attributes of a book.
  *

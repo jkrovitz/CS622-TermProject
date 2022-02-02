@@ -1,6 +1,6 @@
 package edu.bu.jkrovitz.console.controller.roles;
 
-import edu.bu.jkrovitz.console.controller.AccountController;
+import edu.bu.jkrovitz.console.controller.accounts.AccountController;
 import edu.bu.jkrovitz.console.view.roles.admin.AdminLoginView;
 import edu.bu.jkrovitz.console.view.roles.admin.AdminMenuView;
 import org.json.simple.parser.ParseException;

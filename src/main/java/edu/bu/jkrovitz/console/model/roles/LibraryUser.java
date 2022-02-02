@@ -14,29 +14,33 @@ public class LibraryUser {
     private String emailAddress;
     private String username;
     private String password;
+    private String confirmationPassword;
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public String setFirstName(String firstName) {
         this.firstName = firstName;
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public String setLastName(String lastName) {
         this.lastName = lastName;
+        return lastName;
     }
 
     public String getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(String emailAddress) {
+    public String setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+        return this.emailAddress;
     }
 
     public String getUsername() {
@@ -53,16 +57,36 @@ public class LibraryUser {
 
     public String setPassword(String password) {
         this.password = password;
-        return password;
+        return this.password;
     }
 
     public String getEncryptedPassword() {
         return this.password;
     }
 
-    public void setEncryptedPassword(String password) {
+    public String setEncryptedPassword(String password) {
         password = PasswordEncryption.encrypt(this.password);
         this.password = password;
+        return this.password;
+    }
+
+    public String getConfirmationPassword() {
+        return confirmationPassword;
+    }
+
+    public String setConfirmationPassword(String confirmationPassword) {
+        this.confirmationPassword = confirmationPassword;
+        return this.confirmationPassword;
+    }
+
+    public String getEncryptedConfirmationPassword() {
+        return this.confirmationPassword;
+    }
+
+    public String setEncryptedConfirmationPassword(String confirmationPassword) {
+        confirmationPassword = PasswordEncryption.encrypt(this.confirmationPassword);
+        this.confirmationPassword = confirmationPassword;
+        return this.confirmationPassword;
     }
 
 }

@@ -1,15 +1,12 @@
 package edu.bu.jkrovitz.console;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import edu.bu.jkrovitz.console.controller.AccountController;
+import edu.bu.jkrovitz.console.controller.accounts.AccountController;
 import edu.bu.jkrovitz.console.controller.roles.AdminController;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
 import edu.bu.jkrovitz.console.model.MongoDb;
-import edu.bu.jkrovitz.console.model.books.BookFileModel;
 import edu.bu.jkrovitz.console.view.roles.genericRole.GenericLoginRegistrationView;
+import edu.bu.jkrovitz.console.view.roles.patron.PatronLoginRegistrationView;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -29,7 +26,6 @@ public class MainMenu {
         Database.connectToDatabase();
         Database.createTables();
         MongoDb mongoDb = new MongoDb();
-//        MongoCollection collection = mongoDb.createCollection();
         mongoDb.createConnection();
 
         choice = -1;
@@ -66,7 +62,7 @@ public class MainMenu {
                     libraryClerkLoginRegistrationView.askToRegisterOrLogin(Role.LIBRARY_CLERK);
                     break;
                 case 4:
-                    GenericLoginRegistrationView patronLoginRegistrationView = new GenericLoginRegistrationView();
+                    PatronLoginRegistrationView patronLoginRegistrationView = new PatronLoginRegistrationView();
                     patronLoginRegistrationView.askToRegisterOrLogin(Role.PATRON);
                     break;
                 case 0:

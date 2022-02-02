@@ -4,8 +4,6 @@ import edu.bu.jkrovitz.console.controller.books.BookController;
 import edu.bu.jkrovitz.console.controller.books.BookListController;
 import edu.bu.jkrovitz.console.controller.roles.*;
 import edu.bu.jkrovitz.console.enums.Role;
-import edu.bu.jkrovitz.console.model.roles.Librarian;
-import edu.bu.jkrovitz.console.model.roles.Patron;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import org.json.simple.parser.ParseException;
 
@@ -18,7 +16,7 @@ import java.util.Scanner;
  *
  * @author Jeremy Krovitz
  */
-public class AdminMenuView {
+public class AdminMenuView<T> {
 
     public void adminMenu() throws SQLException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
@@ -59,11 +57,11 @@ public class AdminMenuView {
                         bookSearchMenuView.chooseBookSearchMethod();
                         break;
                     case 6:
-                        GenericRoleController<Patron> patronController = new GenericRoleController<>();
+                        GenericRoleController<T> patronController = new GenericRoleController<>();
                         patronController.registerUser(Role.PATRON);
                         break;
                     case 7:
-                        GenericRoleController<Librarian> libraryClerkController = new GenericRoleController<>();
+                        GenericRoleController<T> libraryClerkController = new GenericRoleController<>();
                         libraryClerkController.registerUser(Role.LIBRARY_CLERK);
                         break;
                     default:
