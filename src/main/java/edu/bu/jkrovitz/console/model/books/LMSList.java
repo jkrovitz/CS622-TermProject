@@ -19,5 +19,23 @@ public class LMSList<T>{
         return this.theList;
     }
 
+    public T setFirstItem(T input){
+        this.theList.add(0, input);
+        return this.theList.get(0);
+    }
+
+    public T getFirstItem(){
+        return this.theList.get(0);
+    }
+
+    public T setLastItem(T input){
+        this.theList.add(input);
+        return this.theList.get(this.theList.size()-1);
+    }
+
+    public T getLastItem() {
+        return this.theList.get(this.theList.size()-1);
+    }
+
     // I might consider adding the count, the first and the last item in the list; use a data type otehr than an array list
 }

@@ -1,14 +1,13 @@
 package edu.bu.jkrovitz.console.model.books;
 
-import junit.framework.Assert;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests methods in the LMSList class.
+ */
 class LMSListTest {
 
     @Test
@@ -172,5 +171,123 @@ class LMSListTest {
                 1,
                 1);
         assertFalse(EqualsBuilder.reflectionEquals(sampleBook, bookList.setItem(sampleBook2).get(1)));
+    }
+
+    @Test
+    void setFirstIntegerItem(){
+        LMSList<Integer> integerList = new LMSList<>();
+        integerList.getList().add(1);
+        integerList.getList().add(2);
+        assertEquals(5, integerList.setFirstItem(5));
+        integerList.setFirstItem(6);
+        assertEquals(6, integerList.getFirstItem());
+        integerList.getList().add(0, 7);
+        assertEquals(7, integerList.getFirstItem());
+    }
+
+    @Test
+    void setFirstStringItem(){
+        LMSList<String> stringList = new LMSList<>();
+        stringList.getList().add("Frankenstein");
+        stringList.getList().add("Red Kayak");
+        assertEquals("The Great Gatsby", stringList.setFirstItem("The Great Gatsby"));
+        stringList.setFirstItem("To Kill A Mockingbird");
+        assertEquals("To Kill A Mockingbird", stringList.getFirstItem());
+        stringList.getList().add(0, "Better Nate Than Ever");
+        assertEquals("Better Nate Than Ever", stringList.getFirstItem());
+    }
+
+    @Test
+    void setFirstDoubleItem(){
+        LMSList<Double> doubleList = new LMSList<>();
+        doubleList.getList().add(2.3);
+        doubleList.getList().add(5.2);
+        assertEquals(8.6, doubleList.setFirstItem(8.6));
+        doubleList.setFirstItem(10.7);
+        assertEquals(10.7, doubleList.getFirstItem());
+        doubleList.getList().add(0, 4.2);
+        assertEquals(4.2, doubleList.getFirstItem());
+    }
+
+    @Test
+    void setFirstBooleanItem(){
+        LMSList<Boolean> booleanList = new LMSList<>();
+        booleanList.getList().add(true);
+        booleanList.getList().add(false);
+        assertEquals(true, booleanList.setFirstItem(true));
+        booleanList.setFirstItem(false);
+        assertEquals(false, booleanList.getFirstItem());
+        booleanList.getList().add(0, true);
+        assertEquals(true, booleanList.getFirstItem());
+    }
+    
+    @Test
+    void getFirstIntegerItem(){
+        LMSList<Integer> integerList = new LMSList<>();
+        integerList.getList().add(34);
+        integerList.getList().add(31);
+        integerList.getList().add(0, 28);
+        assertEquals(28, integerList.getFirstItem());
+        integerList.setFirstItem(3);
+        assertEquals(3, integerList.getFirstItem());
+    }
+
+    @Test
+    void getFirstStringItem(){
+        LMSList<String> stringList = new LMSList<>();
+        stringList.getList().add("Frankenstein");
+        stringList.getList().add("To Kill A Mockingbird");
+        stringList.getList().add(0, "The Great Gatsby");
+        assertEquals("The Great Gatsby", stringList.getFirstItem());
+        stringList.setFirstItem("Better Nate Than Ever");
+        assertEquals("Better Nate Than Ever", stringList.getFirstItem());
+    }
+
+    @Test
+    void setLastDoubleItem(){
+        LMSList<Double> doubleList = new LMSList<>();
+        doubleList.getList().add(3.2);
+        doubleList.getList().add(4.3);
+        assertEquals(5.2, doubleList.setLastItem(5.2));
+        doubleList.setLastItem(7.2);
+        doubleList.setLastItem(8.3);
+        assertEquals(8.3, doubleList.getLastItem());
+        doubleList.getList().add((doubleList.getList().size()), 4.7);
+        assertEquals(4.7, doubleList.getLastItem());
+    }
+
+    @Test
+    void setLastStringItem(){
+        LMSList<String> stringList = new LMSList<>();
+        stringList.getList().add("Frankenstein");
+        stringList.getList().add("The Great Gasby");
+        assertEquals("To Kill A Mockingbird", stringList.setLastItem("To Kill A Mockingbird"));
+        stringList.setLastItem("Better Nate Than Ever");
+        stringList.setLastItem("Me and Earl and the Dying Girl");
+        assertEquals("Me and Earl and the Dying Girl", stringList.getLastItem());
+        stringList.getList().add((stringList.getList().size()), "Fun Home");
+        assertEquals("Fun Home", stringList.getLastItem());
+    }
+
+    @Test
+    void getLastIntegerItem(){
+        LMSList<Integer> integerList = new LMSList<>();
+        integerList.getList().add(34);
+        integerList.getList().add(31);
+        integerList.getList().add(integerList.getList().size(), 28);
+        assertEquals(28, integerList.getLastItem());
+        integerList.setLastItem(3);
+        assertEquals(3, integerList.getLastItem());
+    }
+
+    @Test
+    void getLastStringItem(){
+        LMSList<String> stringList = new LMSList<>();
+        stringList.getList().add("Frankenstein");
+        stringList.getList().add("To Kill A Mockingbird");
+        stringList.getList().add(stringList.getList().size(), "The Great Gatsby");
+        assertEquals("The Great Gatsby", stringList.getLastItem());
+        stringList.setLastItem("Better Nate Than Ever");
+        assertEquals("Better Nate Than Ever", stringList.getLastItem());
     }
 }
