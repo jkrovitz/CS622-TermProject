@@ -4,7 +4,6 @@ import edu.bu.jkrovitz.console.controller.accounts.AccountController;
 import edu.bu.jkrovitz.console.controller.roles.AdminController;
 import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.model.Database;
-import edu.bu.jkrovitz.console.model.MongoDb;
 import edu.bu.jkrovitz.console.view.roles.genericRole.GenericLoginRegistrationView;
 import edu.bu.jkrovitz.console.view.roles.patron.PatronLoginRegistrationView;
 import org.json.simple.parser.ParseException;
@@ -25,8 +24,6 @@ public class MainMenu {
         Scanner sc = new Scanner(System.in);
         Database.connectToDatabase();
         Database.createTables();
-        MongoDb mongoDb = new MongoDb();
-        mongoDb.createConnection();
 
         choice = -1;
         do {

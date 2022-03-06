@@ -9,6 +9,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -30,17 +31,18 @@ public class AdminController extends AccountController {
             if (!line.isEmpty()) {
                 // use comma as separator
                 String[] data = line.split(", ");
+                System.out.println(Arrays.toString(data));
                 Scanner loginInput = new Scanner(System.in);
                 String[] userAttributes = new String[3];
                 do {
                     userAttributes = adminLoginView.loginAdminView(loginInput);
 
-                    if ((userAttributes[0].equals(data[0])) && (userAttributes[1].equals(data[1])) && (userAttributes[2].equals(data[2]))) {
+                    if ((userAttributes[0].equals(data[0])) && (userAttributes[1]).equals(data[1])) {
                         System.out.println("You have successfully logged in!");
                     } else {
                         System.out.println("Your credentials are incorrect. Please try again.");
                     }
-                } while ((!(userAttributes[0].equals(data[0]))) || (!(userAttributes[1].equals(data[1]))) || (!(userAttributes[2].equals(data[2]))));
+                } while ((!(userAttributes[0].equals(data[0]))) || (!(userAttributes[1].equals(data[1]))));
 
                 AdminMenuView adminMenuView = new AdminMenuView();
                 adminMenuView.adminMenu();

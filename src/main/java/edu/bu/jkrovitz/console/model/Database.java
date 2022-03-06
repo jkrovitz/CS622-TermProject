@@ -1,6 +1,10 @@
 package edu.bu.jkrovitz.console.model;
 
 import edu.bu.jkrovitz.console.model.accounts.LoginTableModel;
+import edu.bu.jkrovitz.console.model.books.AuthorTableModel;
+import edu.bu.jkrovitz.console.model.books.Book;
+import edu.bu.jkrovitz.console.model.books.BookAuthorTableModel;
+import edu.bu.jkrovitz.console.model.books.BookTableModel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,5 +33,11 @@ public class Database {
     public static void createTables() {
         LoginTableModel loginTableModel = new LoginTableModel();
         loginTableModel.addLoginTable();
+        BookTableModel bookTableModel = new BookTableModel();
+        bookTableModel.addBookTable();
+        AuthorTableModel authorTableModel = new AuthorTableModel();
+        authorTableModel.addAuthorTable();
+        BookAuthorTableModel bookAuthorTableModel = new BookAuthorTableModel();
+        bookAuthorTableModel.addBookAuthorTable();
     }
 }
