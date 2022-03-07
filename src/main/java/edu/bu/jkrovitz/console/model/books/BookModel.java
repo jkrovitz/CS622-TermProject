@@ -33,8 +33,7 @@ public class BookModel {
             }
 
         } catch (SQLException e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            e.printStackTrace();
         }
         conn.close();
         return generatedKey;

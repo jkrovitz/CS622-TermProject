@@ -6,7 +6,9 @@ import edu.bu.jkrovitz.console.view.books.BookView;
 
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Class handles getting information about a book from the view, sets the information about the book, and
@@ -62,6 +64,62 @@ public class BookController {
 //        );
 //    }
 
+    public void addOrUpdateBook(Book book) throws SQLException {
+        UpdateCopiesAndQuantityAvailable updateCopiesAndQuantityAvailable = new UpdateCopiesAndQuantityAvailable();
+        SearchBook searchBook = new SearchBook();
+        ArrayList<ArrayList<String>> books = searchBook.selectBooks();
+        ArrayList<String> thirteenDigitIsbnNumbers = books.get(0);
+        ArrayList<String> tenDigitIsbnNumbers = books.get(1);
+
+        String thirteenDigitIsbnNumberInput = book.getThirteenDigitISBN();
+        String tenDigitIsbnNumberInput = book.getTenDigitISBN();
+
+        if ((thirteenDigitIsbnNumbers.contains(thirteenDigitIsbnNumberInput))){
+            ArrayList<Integer> quantitiesAndCopies = searchBook.selectQuantityAndCopies("thirteen_digit_isbn_number", thirteenDigitIsbnNumberInput);
+            int quantityAvailable = quantitiesAndCopies.get(0);
+            int copies = quantitiesAndCopies.get(1);
+
+            int inputQuantity = book.getQuantityAvailable();
+            int inputCopies = book.getCopies();
+
+            copies = copies + inputQuantity;
+            quantityAvailable = quantityAvailable + inputCopies;
+            updateCopiesAndQuantityAvailable.updateForThirteenDigitIsbn(copies, quantityAvailable, thirteenDigitIsbnNumberInput);
+        }
+        else if (tenDigitIsbnNumbers.contains(tenDigitIsbnNumberInput)){
+            ArrayList<Integer> quantitiesAndCopies = searchBook.selectQuantityAndCopies("ten_digit_isbn_number", tenDigitIsbnNumberInput);
+            int quantityAvailable = quantitiesAndCopies.get(0);
+            int copies = quantitiesAndCopies.get(1);
+
+            int inputQuantity = book.getQuantityAvailable();
+            int inputCopies = book.getCopies();
+
+            copies = copies + inputQuantity;
+            quantityAvailable = quantityAvailable + inputCopies;
+            updateCopiesAndQuantityAvailable.updateForTenDigitIsbn(copies, quantityAvailable, tenDigitIsbnNumberInput);
+        }
+        else {
+            insertBook(book);
+        }
+    }
+
+//    private ArrayList<Integer> getCopiesAndQuantity(ArrayList<Integer> quantitiesAndCopies){
+//        int quantityAvailable = quantitiesAndCopies.get(0);
+//        int copies = quantitiesAndCopies.get(1);
+//
+//        int inputQuantity = book.getQuantityAvailable();
+//        int inputCopies = book.getCopies();
+//
+//        copies = copies + inputQuantity;
+//        quantityAvailable = quantityAvailable + inputCopies;
+//
+//        ArrayList<Integer> copiesAndQuantitiesUpdated = new ArrayList<>();
+//        copiesAndQuantitiesUpdated.add(copies);
+//        copiesAndQuantitiesUpdated.add(quantityAvailable);
+//
+//        return copiesAndQuantitiesUpdated;
+//    }
+
     public void insertBook(Book book) throws SQLException {
         int bookId = bookModel.addBook(
                 book.getTitle(),
@@ -78,11 +136,10 @@ public class BookController {
               book.getAuthor()
         );
         bookAuthorModel.addBookAuthor(bookId, authorId);
-
     }
 
     public void processOutput() throws IOException, ParseException, SQLException {
         setBookInformation();
-        insertBook(book);
+        addOrUpdateBook(book);
     }
 }

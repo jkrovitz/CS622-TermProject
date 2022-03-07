@@ -23,8 +23,7 @@ public class LoginTableModel {
             stmt.close();
             conn.close();
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            e.printStackTrace();
         }
     }
 }
