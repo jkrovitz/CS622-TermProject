@@ -44,26 +44,6 @@ public class BookController {
         bookFileModel.addToBookFile(BOOK_JSON_FILE, book.getTitle(), book.getAuthor(), book.getYear(), book.getPublisher(), book.getPages(), book.getBriefDescription(), book.getThirteenDigitISBN(), book.getTenDigitISBN(), book.getCopies(), book.getQuantityAvailable());
     }
 
-//    public void bookModel(Book book) throws SQLException{
-//        bookModel.addBook(
-//                book.getTitle(),
-//                book.getYear(),
-//                book.getPublisher(),
-//                book.getPages(),
-//                book.getBriefDescription(),
-//                book.getThirteenDigitISBN(),
-//                book.getTenDigitISBN(),
-//                book.getQuantityAvailable(),
-//                book.getCopies()
-//        );
-//    }
-//
-//    public void authorModel(Book book) throws SQLException{
-//        authorModel.addAuthor(
-//              book.getAuthor()
-//        );
-//    }
-
     public void addOrUpdateBook(Book book) throws SQLException {
         UpdateCopiesAndQuantityAvailable updateCopiesAndQuantityAvailable = new UpdateCopiesAndQuantityAvailable();
         SearchBook searchBook = new SearchBook();
@@ -99,29 +79,13 @@ public class BookController {
             updateCopiesAndQuantityAvailable.updateForTenDigitIsbn(copies, quantityAvailable, tenDigitIsbnNumberInput);
         }
         else {
-            insertBook(book);
+            int bookId = insertBook(book);
+            insertAuthor(book, bookId);
         }
     }
 
-//    private ArrayList<Integer> getCopiesAndQuantity(ArrayList<Integer> quantitiesAndCopies){
-//        int quantityAvailable = quantitiesAndCopies.get(0);
-//        int copies = quantitiesAndCopies.get(1);
-//
-//        int inputQuantity = book.getQuantityAvailable();
-//        int inputCopies = book.getCopies();
-//
-//        copies = copies + inputQuantity;
-//        quantityAvailable = quantityAvailable + inputCopies;
-//
-//        ArrayList<Integer> copiesAndQuantitiesUpdated = new ArrayList<>();
-//        copiesAndQuantitiesUpdated.add(copies);
-//        copiesAndQuantitiesUpdated.add(quantityAvailable);
-//
-//        return copiesAndQuantitiesUpdated;
-//    }
-
-    public void insertBook(Book book) throws SQLException {
-        int bookId = bookModel.addBook(
+    public int insertBook(Book book) throws SQLException {
+        return bookModel.addBook(
                 book.getTitle(),
                 book.getYear(),
                 book.getPublisher(),
@@ -132,10 +96,35 @@ public class BookController {
                 book.getQuantityAvailable(),
                 book.getCopies()
         );
-        int authorId = authorModel.addAuthor(
-              book.getAuthor()
+    }
+
+    public void insertAuthor(Book book, int bookId) throws SQLException {
+        int authorId = 0;
+        String authorFromInput = book.getAuthor();
+        AuthorStringManipulation authorStringManipulation = new AuthorStringManipulation();
+        String[] authorArray = authorStringManipulation.createAuthorArray(authorFromInput);
+        SearchAuthor searchAuthor = new SearchAuthor();
+        if (searchAuthor.authorCountGreaterThanZero()){
+            authorId = searchAuthor.getAuthorId(authorArray);
+            if (authorId > 0){
+                bookAuthorModel.addBookAuthor(bookId, authorId);
+            }
+            else {
+                addToAuthorTableAndBookAuthorTable(bookId, authorId);
+            }
+        }
+        else {
+            addToAuthorTableAndBookAuthorTable(bookId, authorId);
+        }
+    }
+
+    private void addToAuthorTableAndBookAuthorTable(int bookId, int authorId) throws SQLException {
+        authorId = authorModel.addAuthor(
+                book.getAuthor()
         );
-        bookAuthorModel.addBookAuthor(bookId, authorId);
+        if (authorId > 0) {
+            bookAuthorModel.addBookAuthor(bookId, authorId);
+        }
     }
 
     public void processOutput() throws IOException, ParseException, SQLException {

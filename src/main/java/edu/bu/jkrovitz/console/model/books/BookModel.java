@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class BookModel {
     public int addBook(String title, int year, String publisher, int pages, String briefDescription, String thirteenDigitISBN, String tenDigitISBN, int quantityAvailable, int copies) throws SQLException {
+
        Connection conn = Database.connectToDatabase();
        ResultSet rs = null;
         int generatedKey = 0;
