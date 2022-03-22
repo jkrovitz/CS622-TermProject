@@ -6,7 +6,6 @@ import edu.bu.jkrovitz.console.view.books.BookView;
 
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -46,8 +45,8 @@ public class BookController {
 
     public void addOrUpdateBook(Book book) throws SQLException {
         UpdateCopiesAndQuantityAvailable updateCopiesAndQuantityAvailable = new UpdateCopiesAndQuantityAvailable();
-        SearchBook searchBook = new SearchBook();
-        ArrayList<ArrayList<String>> books = searchBook.selectBooks();
+        SearchBookForCopyAndQuantityUpdate searchBookForCopyAndQuantityUpdate = new SearchBookForCopyAndQuantityUpdate();
+        ArrayList<ArrayList<String>> books = searchBookForCopyAndQuantityUpdate.selectBooks();
         ArrayList<String> thirteenDigitIsbnNumbers = books.get(0);
         ArrayList<String> tenDigitIsbnNumbers = books.get(1);
 
@@ -55,7 +54,7 @@ public class BookController {
         String tenDigitIsbnNumberInput = book.getTenDigitISBN();
 
         if ((thirteenDigitIsbnNumbers.contains(thirteenDigitIsbnNumberInput))){
-            ArrayList<Integer> quantitiesAndCopies = searchBook.selectQuantityAndCopies("thirteen_digit_isbn_number", thirteenDigitIsbnNumberInput);
+            ArrayList<Integer> quantitiesAndCopies = searchBookForCopyAndQuantityUpdate.selectQuantityAndCopies("thirteen_digit_isbn_number", thirteenDigitIsbnNumberInput);
             int quantityAvailable = quantitiesAndCopies.get(0);
             int copies = quantitiesAndCopies.get(1);
 
@@ -67,7 +66,7 @@ public class BookController {
             updateCopiesAndQuantityAvailable.updateForThirteenDigitIsbn(copies, quantityAvailable, thirteenDigitIsbnNumberInput);
         }
         else if (tenDigitIsbnNumbers.contains(tenDigitIsbnNumberInput)){
-            ArrayList<Integer> quantitiesAndCopies = searchBook.selectQuantityAndCopies("ten_digit_isbn_number", tenDigitIsbnNumberInput);
+            ArrayList<Integer> quantitiesAndCopies = searchBookForCopyAndQuantityUpdate.selectQuantityAndCopies("ten_digit_isbn_number", tenDigitIsbnNumberInput);
             int quantityAvailable = quantitiesAndCopies.get(0);
             int copies = quantitiesAndCopies.get(1);
 

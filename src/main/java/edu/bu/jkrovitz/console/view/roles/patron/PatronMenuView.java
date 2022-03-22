@@ -4,6 +4,7 @@ import edu.bu.jkrovitz.console.enums.Role;
 import edu.bu.jkrovitz.console.view.books.BookSearchMenuView;
 import edu.bu.jkrovitz.console.view.roles.genericRole.ProfileInformationConfirmation;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Scanner;
  */
 public class PatronMenuView {
 
-    public void patronMenu(Role role, String username, String password) {
+    public void patronMenu(Role role, String username, String password) throws SQLException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {

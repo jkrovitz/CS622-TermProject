@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.bu.jkrovitz.console.exceptions.book.IsbnException;
 import edu.bu.jkrovitz.console.model.books.Book;
 import edu.bu.jkrovitz.console.model.books.BookFileModel;
+import edu.bu.jkrovitz.console.model.books.SearchBookAndDisplay;
 import edu.bu.jkrovitz.console.view.books.BookFinderView;
 import edu.bu.jkrovitz.console.view.books.BookValidateView;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,46 +33,59 @@ public class BookFinderController {
     private Book book = new Book();
     private static Logger logger = LogManager.getLogger(BookFinderController.class);
 
-    public boolean findBookByTitleAndAuthor() {
-        JsonParser jsonParser = new JsonParser();
-        File file = new File(bookFileModel.getBookFile());
+//    public boolean findBookByTitleAndAuthor() {
+//        JsonParser jsonParser = new JsonParser();
+//        File file = new File(bookFileModel.getBookFile());
+//
+//        String titleInput = bookFinderView.findBookByTitle();
+//        String authorInput = bookFinderView.findBookByAuthor();
+//
+//        Gson gson = new Gson();
+//        boolean found = false;
+//        try ( FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true)){
+//
+//            if (file.length() == 0) {
+//                System.out.println("There are no books in this file.");
+//                fileWriter.close();
+//            }
+//            else {
+//                Reader reader = new FileReader(BOOK_JSON_FILE);
+//                JsonArray jsonArray = (JsonArray) jsonParser.parse(reader);
+//
+//                Type listType = new TypeToken<ArrayList<Book>>() {
+//                }.getType();
+//                List<Book> bookList = new Gson().fromJson(jsonArray, listType);
+//
+//                for (Book bm : bookList) {
+//                    if ((bm.getTitle().equals(titleInput)) && (bm.getAuthor().equals(authorInput))) {
+//                        System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" has been found:");
+//                        System.out.println(bm.toString());
+//                        found = true;
+//                        break;
+//                    }
+//                }
+//                if (!found) {
+//                    System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" was not found.");
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            logger.error(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage().toString());
+//        }
+//        return found;
+//    }
 
-        String titleInput = bookFinderView.findBookByTitle();
-        String authorInput = bookFinderView.findBookByAuthor();
-
-        Gson gson = new Gson();
+    public boolean findBookByTitleAndAuthor() throws SQLException {
         boolean found = false;
-        try ( FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true)){
-
-            if (file.length() == 0) {
-                System.out.println("There are no books in this file.");
-                fileWriter.close();
-            }
-            else {
-                Reader reader = new FileReader(BOOK_JSON_FILE);
-                JsonArray jsonArray = (JsonArray) jsonParser.parse(reader);
-
-                Type listType = new TypeToken<ArrayList<Book>>() {
-                }.getType();
-                List<Book> bookList = new Gson().fromJson(jsonArray, listType);
-
-                for (Book bm : bookList) {
-                    if ((bm.getTitle().equals(titleInput)) && (bm.getAuthor().equals(authorInput))) {
-                        System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" has been found:");
-                        System.out.println(bm.toString());
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" was not found.");
-                }
-            }
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage().toString());
+        String bookTitle = bookFinderView.findBookByTitle();
+        String bookAuthor = bookFinderView.findBookByAuthor();
+        SearchBookAndDisplay searchBookAndDisplay = new SearchBookAndDisplay();
+        ResultSet resultSet = searchBookAndDisplay.searchBookAndAuthor(bookTitle, bookAuthor);
+        if (resultSet != null){
+            found = true;
         }
+        System.out.println("found " + found);
         return found;
     }
 

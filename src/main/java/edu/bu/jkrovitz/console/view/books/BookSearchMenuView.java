@@ -2,6 +2,7 @@ package edu.bu.jkrovitz.console.view.books;
 
 import edu.bu.jkrovitz.console.controller.books.BookFinderController;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  */
 public class BookSearchMenuView {
 
-    public void chooseBookSearchMethod(){
+    public void chooseBookSearchMethod() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {

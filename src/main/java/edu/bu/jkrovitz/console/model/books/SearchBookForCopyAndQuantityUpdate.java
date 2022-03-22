@@ -5,7 +5,7 @@ import edu.bu.jkrovitz.console.model.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class SearchBook {
+public class SearchBookForCopyAndQuantityUpdate {
 
     public ArrayList<ArrayList<String>> selectBooks(){
         Connection conn = Database.connectToDatabase();

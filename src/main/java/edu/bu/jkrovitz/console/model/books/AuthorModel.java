@@ -32,8 +32,6 @@ public class AuthorModel {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(0);
             }
-
-
         }
         else if (authorArray.length == 3){
             String firstName = authorArray[0];
