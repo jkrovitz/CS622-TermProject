@@ -30,112 +30,33 @@ public class BookFinderController {
     private static final String BOOK_JSON_FILE = "./src/main/resources/edu.bu.jkrovitz.json/books.json";
     private BookFinderView bookFinderView = new BookFinderView();
     private BookFileModel bookFileModel = new BookFileModel();
-    private Book book = new Book();
     private static Logger logger = LogManager.getLogger(BookFinderController.class);
 
-//    public boolean findBookByTitleAndAuthor() {
-//        JsonParser jsonParser = new JsonParser();
-//        File file = new File(bookFileModel.getBookFile());
-//
-//        String titleInput = bookFinderView.findBookByTitle();
-//        String authorInput = bookFinderView.findBookByAuthor();
-//
-//        Gson gson = new Gson();
-//        boolean found = false;
-//        try ( FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true)){
-//
-//            if (file.length() == 0) {
-//                System.out.println("There are no books in this file.");
-//                fileWriter.close();
-//            }
-//            else {
-//                Reader reader = new FileReader(BOOK_JSON_FILE);
-//                JsonArray jsonArray = (JsonArray) jsonParser.parse(reader);
-//
-//                Type listType = new TypeToken<ArrayList<Book>>() {
-//                }.getType();
-//                List<Book> bookList = new Gson().fromJson(jsonArray, listType);
-//
-//                for (Book bm : bookList) {
-//                    if ((bm.getTitle().equals(titleInput)) && (bm.getAuthor().equals(authorInput))) {
-//                        System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" has been found:");
-//                        System.out.println(bm.toString());
-//                        found = true;
-//                        break;
-//                    }
-//                }
-//                if (!found) {
-//                    System.out.println("\nThe book with title \"" + titleInput + "\" and author \"" + authorInput + "\" was not found.");
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            logger.error(e.getMessage());
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage().toString());
-//        }
-//        return found;
-//    }
-
-    public boolean findBookByTitleAndAuthor() throws SQLException {
-        boolean found = false;
+    public void findBookByTitleAndAuthor() {
         String bookTitle = bookFinderView.findBookByTitle();
         String bookAuthor = bookFinderView.findBookByAuthor();
         SearchBookAndDisplay searchBookAndDisplay = new SearchBookAndDisplay();
-        ResultSet resultSet = searchBookAndDisplay.searchBookAndAuthor(bookTitle, bookAuthor);
-        if (resultSet != null){
-            found = true;
+        int bookId = searchBookAndDisplay.searchBookAndAuthor(bookTitle, bookAuthor);
+        if (bookId != 0) {
+            System.out.println("\nBook found:");
+            searchBookAndDisplay.displayBookAndAuthor(bookId);
         }
-        System.out.println("found " + found);
-        return found;
+        else {
+            System.out.println("\nBook with title \"" + bookTitle + "\" and author \"" + bookAuthor + "\" has not been found.\n");
+        }
     }
 
-    public boolean findBookByTenOrThirteenDigitIsbn() {
-        JsonParser jsonParser = new JsonParser();
-        File file = new File(bookFileModel.getBookFile());
-
-        String isbnInput = bookFinderView.findBookByTenOrThirteenDigitISBNNumber();
-
-        Gson gson = new Gson();
-        boolean found = false;
-        try {
-            FileWriter fileWriter = new FileWriter(BOOK_JSON_FILE, true);
-
-            if (file.length() == 0) {
-                System.out.println("There are no books in this file.");
-                fileWriter.close();
-            }
-            else {
-                Reader reader = new FileReader(BOOK_JSON_FILE);
-                JsonArray jsonArray = (JsonArray) jsonParser.parse(reader);
-
-                Type listType = new TypeToken<ArrayList<Book>>() {
-                }.getType();
-                List<Book> bookList = new Gson().fromJson(jsonArray, listType);
-
-                try {
-                    for (Book bm : bookList) {
-                        if ((!(BookValidateView.validateTenDigitISBNNumber(isbnInput))) && (!(BookValidateView.validateThirteenDigitISBNNumber(isbnInput)))) {
-                            throw new IsbnException();
-                        }
-                        if ((bm.getTenDigitISBN().equals(isbnInput)) || (bm.getThirteenDigitISBN().equals(isbnInput))) {
-                            System.out.println("\nThe book with the isbn number \"" + isbnInput + "\" has been found:");
-                            System.out.println(bm.toString());
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found) {
-                        System.out.println("\nThe book with the isbn number \"" + isbnInput + "\" was not found.");
-                    }
-                } catch (IsbnException isbnException) {
-                    System.out.println(isbnException.getMessage().toString());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage().toString());
+    public void findBookByIsbn() {
+        String tenOrThirteenDigitIsbnInput = bookFinderView.findBookByTenOrThirteenDigitISBNNumber();
+        SearchBookAndDisplay searchBookAndDisplay = new SearchBookAndDisplay();
+        int bookId = searchBookAndDisplay.searchIsbn(tenOrThirteenDigitIsbnInput);
+        if (bookId != 0) {
+            System.out.println("\nBook found:");
+            searchBookAndDisplay.displayBookAndAuthor(bookId);
         }
-        return found;
+        else {
+            System.out.println("\nBook with ISBN number \"" + tenOrThirteenDigitIsbnInput + "\" was not found.");
+        }
+
     }
 }

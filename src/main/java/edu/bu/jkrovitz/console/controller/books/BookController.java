@@ -100,11 +100,9 @@ public class BookController {
     public void insertAuthor(Book book, int bookId) throws SQLException {
         int authorId = 0;
         String authorFromInput = book.getAuthor();
-        AuthorStringManipulation authorStringManipulation = new AuthorStringManipulation();
-        String[] authorArray = authorStringManipulation.createAuthorArray(authorFromInput);
         SearchAuthor searchAuthor = new SearchAuthor();
         if (searchAuthor.authorCountGreaterThanZero()){
-            authorId = searchAuthor.getAuthorId(authorArray);
+            authorId = searchAuthor.getAuthorId(authorFromInput);
             if (authorId > 0){
                 bookAuthorModel.addBookAuthor(bookId, authorId);
             }

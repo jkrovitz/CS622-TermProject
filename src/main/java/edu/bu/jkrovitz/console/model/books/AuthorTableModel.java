@@ -16,9 +16,7 @@ public class AuthorTableModel {
             stmt = conn.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS author (\n" +
                     "author_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                    "author_first_name VARCHAR(255) NOT NULL,\n" +
-                    "author_middle_name VARCHAR(255),\n" +
-                    "author_last_name VARCHAR(255) NOT NULL\n" +
+                    "author_full_name VARCHAR(255) NOT NULL" +
                     ");";
             stmt.executeUpdate(sql);
             stmt.close();

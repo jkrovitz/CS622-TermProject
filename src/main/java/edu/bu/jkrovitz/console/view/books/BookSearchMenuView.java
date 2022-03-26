@@ -37,7 +37,7 @@ public class BookSearchMenuView {
                     break;
                 case 3:
                     BookFinderController isbnSearch = new BookFinderController();
-                    isbnSearch.findBookByTenOrThirteenDigitIsbn();
+                    isbnSearch.findBookByIsbn();
                     break;
                 default:
                     System.out.println("You have chose an invalid option.");
